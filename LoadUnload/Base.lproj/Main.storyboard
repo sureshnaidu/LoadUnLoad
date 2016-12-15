@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1AS-dh-pgB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -19,13 +26,46 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrV-ER-yPJ">
+                                <rect key="frame" x="0.0" y="553" width="186.5" height="50"/>
+                                <color key="backgroundColor" red="0.094117647060000004" green="0.074509803920000006" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="EDK-Tj-dUV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.97254901960784312" green="0.94901960784313721" blue="0.023529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq1-hA-udE">
+                                <rect key="frame" x="188.5" y="553" width="186.5" height="50"/>
+                                <color key="backgroundColor" red="0.094117647060000004" green="0.074509803920000006" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.97254901960784312" green="0.94901960784313721" blue="0.023529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Kq1-hA-udE" secondAttribute="trailing" constant="-16" id="6Xb-jb-3Bb"/>
+                            <constraint firstItem="Kq1-hA-udE" firstAttribute="baseline" secondItem="XrV-ER-yPJ" secondAttribute="firstBaseline" id="ImW-df-MVQ"/>
+                            <constraint firstItem="Kq1-hA-udE" firstAttribute="width" secondItem="XrV-ER-yPJ" secondAttribute="width" id="J1J-ae-zfY"/>
+                            <constraint firstItem="Kq1-hA-udE" firstAttribute="firstBaseline" secondItem="XrV-ER-yPJ" secondAttribute="baseline" id="J2w-LK-usu"/>
+                            <constraint firstItem="Kq1-hA-udE" firstAttribute="top" secondItem="XrV-ER-yPJ" secondAttribute="top" id="OCu-38-1wS"/>
+                            <constraint firstItem="Kq1-hA-udE" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gz5-EM-fI6"/>
+                            <constraint firstItem="XrV-ER-yPJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="o2Z-LB-ccx"/>
+                            <constraint firstItem="Kq1-hA-udE" firstAttribute="leading" secondItem="XrV-ER-yPJ" secondAttribute="trailing" constant="2" id="ooT-LU-89D"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="hWh-6C-wFa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1008.8" y="-571.66416791604206"/>
         </scene>
         <!--Flash Screen View Controller-->
         <scene sceneID="AC7-3V-pml">
@@ -375,6 +415,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0nk-hA-Lak" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="2106.2968515742132"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bVX-MA-05H">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1AS-dh-pgB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="JpZ-MH-gPm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.094117647058823528" green="0.074509803921568626" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="QRI-ZB-MRE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h3M-vu-mQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="197.59999999999999" y="-569.86506746626696"/>
         </scene>
     </scenes>
 </document>

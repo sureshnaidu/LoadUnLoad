@@ -6,5 +6,7 @@ target 'LoadUnload' do
   use_frameworks!
 
 pod 'Material', '~> 2.4'
+pod 'GoogleMaps'
+pod 'GooglePlaces'
 
 end
