@@ -35,16 +35,16 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="EDK-Tj-dUV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
-                                <state key="normal" title="Button">
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <state key="normal" title="BOOK LATER">
                                     <color key="titleColor" red="0.97254901960784312" green="0.94901960784313721" blue="0.023529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq1-hA-udE">
                                 <rect key="frame" x="188.5" y="553" width="186.5" height="50"/>
                                 <color key="backgroundColor" red="0.094117647060000004" green="0.074509803920000006" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
-                                <state key="normal" title="Button">
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <state key="normal" title="BOOK NOW">
                                     <color key="titleColor" red="0.97254901960784312" green="0.94901960784313721" blue="0.023529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -80,7 +80,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVO-QR-Pcd">
-                                <rect key="frame" x="-4" y="617" width="190.5" height="50"/>
+                                <rect key="frame" x="-4" y="617" width="191" height="50"/>
                                 <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9EU-Y0-pSc"/>
@@ -93,7 +93,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTx-wr-PFW">
-                                <rect key="frame" x="188.5" y="617" width="190.5" height="50"/>
+                                <rect key="frame" x="189" y="617" width="190" height="50"/>
                                 <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="xdL-dO-TeD"/>
@@ -421,7 +421,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1AS-dh-pgB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="JpZ-MH-gPm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="JpZ-MH-gPm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.094117647058823528" green="0.074509803921568626" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
