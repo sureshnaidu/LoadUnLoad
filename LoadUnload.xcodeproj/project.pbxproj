@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0256A114CF9B8093AC5B5357 /* Pods_LoadUnload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B83A2DF34F03A10185A1C31F /* Pods_LoadUnload.framework */; };
+		840B751F1E03C0B400A6E5EE /* PlaceSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B751E1E03C0B400A6E5EE /* PlaceSearchViewController.swift */; };
 		842A11C11E01A324000657AF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A11C01E01A324000657AF /* RegisterViewController.swift */; };
 		842A11C31E01C930000657AF /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A11C21E01C930000657AF /* LogInViewController.swift */; };
 		8444FD661E0190F2004D5A62 /* FlashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8444FD651E0190F2004D5A62 /* FlashScreenViewController.swift */; };
@@ -41,6 +42,7 @@
 		2CF9275AE0F36B02BFB5053B /* Pods_LoadUnloadUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadUnloadUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51D98ADA1A6B1990C9DDBA46 /* Pods-LoadUnload.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadUnload.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoadUnload/Pods-LoadUnload.release.xcconfig"; sourceTree = "<group>"; };
 		659499941C528DBD4E7B166F /* Pods-LoadUnload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadUnload.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoadUnload/Pods-LoadUnload.debug.xcconfig"; sourceTree = "<group>"; };
+		840B751E1E03C0B400A6E5EE /* PlaceSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceSearchViewController.swift; sourceTree = "<group>"; };
 		842A11C01E01A324000657AF /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		842A11C21E01C930000657AF /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		8444FD651E0190F2004D5A62 /* FlashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashScreenViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				8444FD651E0190F2004D5A62 /* FlashScreenViewController.swift */,
 				842A11C01E01A324000657AF /* RegisterViewController.swift */,
 				842A11C21E01C930000657AF /* LogInViewController.swift */,
+				840B751E1E03C0B400A6E5EE /* PlaceSearchViewController.swift */,
 				84C6116C1E005FD5007D4DFA /* Main.storyboard */,
 				84C6116F1E005FD5007D4DFA /* Assets.xcassets */,
 				84C611711E005FD5007D4DFA /* LaunchScreen.storyboard */,
@@ -353,6 +356,7 @@
 				8444FD661E0190F2004D5A62 /* FlashScreenViewController.swift in Sources */,
 				84C611691E005FD5007D4DFA /* AppDelegate.swift in Sources */,
 				842A11C31E01C930000657AF /* LogInViewController.swift in Sources */,
+				840B751F1E03C0B400A6E5EE /* PlaceSearchViewController.swift in Sources */,
 				842A11C11E01A324000657AF /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
