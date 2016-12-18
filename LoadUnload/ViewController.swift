@@ -9,30 +9,31 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
-class ViewController: UIViewController,UITextFieldDelegate {
+import Alamofire
+class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
 
     var marker = GMSMarker()
     var fromTextField: UITextField! = nil
     var toTextField: UITextField! = nil
     var fromTFSelected: Bool = false
     var toTFSelected: Bool = false
+    
+    @IBOutlet var mapView: GMSMapView!
 //    var mapView = GMSMapView()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UIApplication.shared.statusBarStyle = .lightContent
         // Do any additional setup after loading the view, typically from a nib.
 
-        
-        let camera = GMSCameraPosition.camera(withLatitude: 17.3850,
-                                              longitude: 78.486,
-                                              zoom: 16)
-        let mapView = GMSMapView.map(withFrame: .zero, camera: camera)
+       
+        mapView = GMSMapView()
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
-        marker.appearAnimation = kGMSMarkerAnimationPop
-//        marker.map = mapView
         view.addSubview(mapView)
-        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-164)
-        
+     
+
+        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-179)
         
         //text fields
         fromTextField = UITextField(frame: CGRect(x: 40, y: 20, width: view.frame.size.width-80, height: 25.00));
@@ -44,8 +45,20 @@ class ViewController: UIViewController,UITextFieldDelegate {
         toTextField.backgroundColor = UIColor.white
         toTextField.delegate = self
         self.view.addSubview(toTextField)
+        
+//        Alamofire.request("https://maps.googleapis.com/maps/api/directions/json?origin=Hyderabad&destination=Bengalore&key=AIzaSyBLi8S99bjOzbmlR69DCvGxThJHtXGEeYQ").responseJSON { response in
+//            print(response.request)  // original URL request
+//            print(response.response) // HTTP URL response
+//            print(response.data)     // server data
+//            print(response.description)   // result of response serialization
+//            
+//            if let JSON = response.result.value {
+//                print("JSON: \(JSON)")
+//            }
+//        }
        
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -77,6 +90,18 @@ class ViewController: UIViewController,UITextFieldDelegate {
         
         return false
     }
+
+    @IBAction func belowOneTonButtonclicked(_ sender: Any) {
+        
+        
+        
+    }
+    @IBAction func oneTonButtonClicked(_ sender: Any) {
+    }
+    @IBAction func twoTonButtonClicked(_ sender: Any) {
+    }
+    @IBAction func aboveOneTonButtonClicked(_ sender: Any) {
+    }
 }
 
 extension ViewController: GMSAutocompleteViewControllerDelegate {
@@ -91,13 +116,28 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
         
         if fromTFSelected {
             marker.position = place.coordinate
-            marker.icon = UIImage(named: "flag_icon")
+            marker.appearAnimation = kGMSMarkerAnimationPop
+            marker.map = mapView
+            marker.icon = UIImage(named: "source")
+            mapView.animate(toLocation: place.coordinate)
+            mapView.animate(toZoom: 14)
             fromTextField.text = place.formattedAddress
         }
         else {
-            marker.position = place.coordinate
-            marker.icon = UIImage(named: "flag_icon")
+            
+            let marker1 = GMSMarker()
+            marker1.position = place.coordinate
+            marker1.appearAnimation = kGMSMarkerAnimationPop
+            marker1.map = mapView
+            marker1.icon = UIImage(named: "destination")
+            mapView.animate(toLocation: place.coordinate)
+            mapView.animate(toZoom: 14)
             toTextField.text = place.formattedAddress
+            
+            // https://maps.googleapis.com/maps/api/directions/json?origin=Chicago,IL&destination=Los+Angeles,CA&waypoints=Joplin,MO|Oklahoma+City,OK&key=YOUR_API_KEY
+
+            
+          
         }
     }
     

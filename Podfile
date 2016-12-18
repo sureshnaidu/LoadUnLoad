@@ -8,5 +8,5 @@ target 'LoadUnload' do
 pod 'Material', '~> 2.4'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
-
+pod 'Alamofire', '~> 4.0'
 end
