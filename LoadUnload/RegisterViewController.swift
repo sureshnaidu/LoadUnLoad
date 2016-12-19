@@ -85,13 +85,15 @@ class RegisterViewController: UIViewController {
         if (self.userName.text?.characters.count == 0) , (self.phoneNum.text?.characters.count == 0) , (self.emailId.text?.characters.count == 0) , (self.password.text?.characters.count == 0) , (self.reenterPassword.text?.characters.count == 0) {
             self.showErrorAlert("Error", message: "Please enter All Fields")
             return
-            
         }
         else if (isValidEmail(testStr: self.emailId.text!) != true) {
             self.showErrorAlert("Email Input Error", message: "Please make sure you have entered a valid email.")
         }
         else if(self.phoneNum.text?.characters.count != 10) {
             self.showErrorAlert("Phone Input Error", message: "Please make sure you have entered a valid phone number. Phone numbers should be 10 digits.")
+        }
+        else if(self.password.text  == self.reenterPassword.text) {
+            self.showErrorAlert("Password Input Error", message: "Please make sure you have entered a correct password in both fields.")
         }
         else{
             UserSession.shared.token = "ss"

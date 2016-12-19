@@ -108,8 +108,8 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     }
     
     @IBAction func belowOneTonButtonclicked(_ sender: UIButton) {
-        buttonsUnSelected()
         if sender.isSelected == false{
+            buttonsUnSelected()
             sender.isSelected = true
             sender.setImage(below_one_ton_Selected, for: UIControlState.normal)
         }else{
@@ -120,8 +120,8 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     }
     
     @IBAction func oneTonButtonClicked(_ sender: UIButton) {
-        buttonsUnSelected()
         if sender.isSelected == false{
+            buttonsUnSelected()
             sender.isSelected = true
             sender.setImage(below_one_ton_Selected, for: UIControlState.normal)
         }else{
@@ -131,6 +131,30 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         
         
     }
+
+    @IBAction func aboveOneTonButtonClicked(_ sender: UIButton) {
+        if sender.isSelected == false{
+            buttonsUnSelected()
+            sender.isSelected = true
+            sender.setImage(below_two_ton_Selected, for: UIControlState.normal)
+        }else{
+            sender.isSelected = false
+            sender.setImage(below_two_ton, for: UIControlState.normal)
+        }
+        
+    }
+    
+    @IBAction func twoTonButtonClicked(_ sender: UIButton) {
+        if sender.isSelected == false{
+            buttonsUnSelected()
+            sender.isSelected = true
+            sender.setImage(two_ton_Selected, for: UIControlState.normal)
+        }else{
+            sender.isSelected = false
+            sender.setImage(two_ton, for: UIControlState.normal)
+        }
+    }
+    
     func buttonsUnSelected(){
         belowOneTonButton.isSelected = false
         oneTonButton.isSelected = false
@@ -142,28 +166,6 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         aboveOneTonButton.setImage(below_two_ton, for: UIControlState.normal)
         oneTonButton.setImage(one_ton, for: UIControlState.normal)
         
-    }
-    @IBAction func aboveOneTonButtonClicked(_ sender: UIButton) {
-        buttonsUnSelected()
-        if sender.isSelected == false{
-            sender.isSelected = true
-            sender.setImage(below_two_ton_Selected, for: UIControlState.normal)
-        }else{
-            sender.isSelected = false
-            sender.setImage(below_two_ton, for: UIControlState.normal)
-        }
-        
-    }
-    
-    @IBAction func twoTonButtonClicked(_ sender: UIButton) {
-        buttonsUnSelected()
-        if sender.isSelected == false{
-            sender.isSelected = true
-            sender.setImage(two_ton_Selected, for: UIControlState.normal)
-        }else{
-            sender.isSelected = false
-            sender.setImage(two_ton, for: UIControlState.normal)
-        }
     }
     
 }
