@@ -26,16 +26,17 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     let one_ton = UIImage(named: "open_1_ton")
     
     let below_two_ton_Selected = UIImage(named: "open_selected_1_5_ton")
-    let below_two_ton = UIImage(named: "open_0_75_ton")
+    let below_two_ton = UIImage(named: "open_1_5_ton")
     
     let two_ton_Selected = UIImage(named: "closed_2_ton_selected")
     let two_ton = UIImage(named: "open_2_ton")
     
+    
+    @IBOutlet var loadingButton: UIButton!
     @IBOutlet var belowOneTonButton: UIButton!
     @IBOutlet var oneTonButton: UIButton!
-    @IBOutlet var belowTwoTonButton: UIButton!
+    @IBOutlet var aboveOneTonButton: UIButton!
     @IBOutlet var twoTonButton: UIButton!
-    
     
     
     @IBOutlet var mapView: GMSMapView!
@@ -46,14 +47,17 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
         // Do any additional setup after loading the view, typically from a nib.
         
+        loadingButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        belowOneTonButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        oneTonButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        aboveOneTonButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        twoTonButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
         mapView = GMSMapView()
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         view.addSubview(mapView)
-        
-        
-        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-179)
+        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-189)
         
         //text fields
         fromTextField = UITextField(frame: CGRect(x: 40, y: 20, width: view.frame.size.width-80, height: 25.00));
@@ -120,7 +124,6 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         if sender.isSelected == false{
             sender.isSelected = true
             sender.setImage(below_one_ton_Selected, for: UIControlState.normal)
-            
         }else{
             sender.isSelected = false
             sender.setImage(below_two_ton, for: UIControlState.normal)
@@ -131,21 +134,20 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     func buttonsUnSelected(){
         belowOneTonButton.isSelected = false
         oneTonButton.isSelected = false
-        belowTwoTonButton.isSelected = false
+        aboveOneTonButton.isSelected = false
         twoTonButton.isSelected = false
         
         twoTonButton.setImage(two_ton, for: UIControlState.normal)
         belowOneTonButton.setImage(below_one_ton, for: UIControlState.normal)
-        belowTwoTonButton.setImage(below_two_ton, for: UIControlState.normal)
+        aboveOneTonButton.setImage(below_two_ton, for: UIControlState.normal)
         oneTonButton.setImage(one_ton, for: UIControlState.normal)
         
     }
-    @IBAction func belowTowTonButtonClicked(_ sender: UIButton) {
+    @IBAction func aboveOneTonButtonClicked(_ sender: UIButton) {
         buttonsUnSelected()
         if sender.isSelected == false{
             sender.isSelected = true
             sender.setImage(below_two_ton_Selected, for: UIControlState.normal)
-            
         }else{
             sender.isSelected = false
             sender.setImage(below_two_ton, for: UIControlState.normal)
@@ -175,7 +177,6 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
         print("Place attributions: \(place.attributions)")
         dismiss(animated: true, completion: nil)
         
-        
         if fromTFSelected {
             marker.position = place.coordinate
             marker.appearAnimation = kGMSMarkerAnimationPop
@@ -186,7 +187,6 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
             fromTextField.text = place.formattedAddress
         }
         else {
-            
             let marker1 = GMSMarker()
             marker1.position = place.coordinate
             marker1.appearAnimation = kGMSMarkerAnimationPop
@@ -195,7 +195,6 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
             mapView.animate(toLocation: place.coordinate)
             mapView.animate(toZoom: 14)
             toTextField.text = place.formattedAddress
-            
             getRoutePoints(from: marker.position, to: marker1.position)
         }
     }
@@ -216,7 +215,6 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
                 polyline.strokeWidth = 5
                 polyline.map = self.mapView
             }
-        
         }
         
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
-
+    
     @IBOutlet var userName: UITextField!
     @IBOutlet var phoneNum: UITextField!
     @IBOutlet weak var scroolView: UIScrollView!
@@ -20,16 +20,15 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         self.registerForKeyboardNotifications()
         
-        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     @IBAction func cancelClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -82,9 +81,36 @@ class RegisterViewController: UIViewController {
         activeField = nil
     }
     @IBAction func signUpClicked(_ sender: Any) {
-       
-        UserSession.shared.token = "ss"
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        
+        if (self.userName.text?.characters.count == 0) , (self.phoneNum.text?.characters.count == 0) , (self.emailId.text?.characters.count == 0) , (self.password.text?.characters.count == 0) , (self.reenterPassword.text?.characters.count == 0) {
+            self.showErrorAlert("Error", message: "Please enter All Fields")
+            return
+            
+        }
+        else if (isValidEmail(testStr: self.emailId.text!) != true) {
+            self.showErrorAlert("Email Input Error", message: "Please make sure you have entered a valid email.")
+        }
+        else if(self.phoneNum.text?.characters.count != 10) {
+            self.showErrorAlert("Phone Input Error", message: "Please make sure you have entered a valid phone number. Phone numbers should be 10 digits.")
+        }
+        else{
+            UserSession.shared.token = "ss"
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
+    func showErrorAlert(_ title:String , message:String) {
+        let alert = UIAlertController(title:title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
