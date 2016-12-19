@@ -79,4 +79,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         return true
     }
+    @IBAction func logInButtonClicked(_ sender: UIButton) {
+        UserSession.shared.token = "ss"
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
 }

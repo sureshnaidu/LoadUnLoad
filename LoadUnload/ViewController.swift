@@ -11,13 +11,13 @@ import GoogleMaps
 import GooglePlaces
 import Alamofire
 class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
-
+    
     var marker = GMSMarker()
     var fromTextField: UITextField! = nil
     var toTextField: UITextField! = nil
     var fromTFSelected: Bool = false
     var toTFSelected: Bool = false
-
+    
     //images
     let below_one_ton_Selected = UIImage(named: "open_0_75_ton_selected")
     let below_one_ton = UIImage(named: "open_0_75_ton")
@@ -35,24 +35,24 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     @IBOutlet var oneTonButton: UIButton!
     @IBOutlet var belowTwoTonButton: UIButton!
     @IBOutlet var twoTonButton: UIButton!
-
-
+    
+    
     
     @IBOutlet var mapView: GMSMapView!
-//    var mapView = GMSMapView()
+    //    var mapView = GMSMapView()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         UIApplication.shared.statusBarStyle = .lightContent
         // Do any additional setup after loading the view, typically from a nib.
-
-       
+        
+        
         mapView = GMSMapView()
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         view.addSubview(mapView)
-     
-
+        
+        
         mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-179)
         
         //text fields
@@ -66,32 +66,24 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         toTextField.delegate = self
         self.view.addSubview(toTextField)
         
-//        Alamofire.request("https://maps.googleapis.com/maps/api/directions/json?origin=Hyderabad&destination=Bengalore&key=AIzaSyBLi8S99bjOzbmlR69DCvGxThJHtXGEeYQ").responseJSON { response in
-//            print(response.request)  // original URL request
-//            print(response.response) // HTTP URL response
-//            print(response.data)     // server data
-//            print(response.description)   // result of response serialization
-//            
-//            if let JSON = response.result.value {
-//                print("JSON: \(JSON)")
-//            }
-//        }
-       
+        
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        let vc : FlashScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "flashScreenViewController") as! FlashScreenViewController
-//       present(vc, animated: true, completion: nil)
+        if UserSession.shared.token == nil{
+            let vc : FlashScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "flashScreenViewController") as! FlashScreenViewController
+            present(vc, animated: true, completion: nil)
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
@@ -110,7 +102,7 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         
         return false
     }
-
+    
     @IBAction func belowOneTonButtonclicked(_ sender: UIButton) {
         buttonsUnSelected()
         if sender.isSelected == false{
@@ -134,7 +126,7 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
             sender.setImage(below_two_ton, for: UIControlState.normal)
         }
         
-       
+        
     }
     func buttonsUnSelected(){
         belowOneTonButton.isSelected = false
@@ -149,7 +141,7 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         
     }
     @IBAction func belowTowTonButtonClicked(_ sender: UIButton) {
-         buttonsUnSelected()
+        buttonsUnSelected()
         if sender.isSelected == false{
             sender.isSelected = true
             sender.setImage(below_two_ton_Selected, for: UIControlState.normal)
@@ -204,11 +196,29 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
             mapView.animate(toZoom: 14)
             toTextField.text = place.formattedAddress
             
-            // https://maps.googleapis.com/maps/api/directions/json?origin=Chicago,IL&destination=Los+Angeles,CA&waypoints=Joplin,MO|Oklahoma+City,OK&key=YOUR_API_KEY
-
-            
-          
+            getRoutePoints(from: marker.position, to: marker1.position)
         }
+    }
+   
+    func getRoutePoints(from : CLLocationCoordinate2D , to : CLLocationCoordinate2D) {
+     
+        Alamofire.request("https://maps.googleapis.com/maps/api/directions/json?origin=\(from.latitude),\(from.longitude)&destination=\(to.latitude),\(to.longitude)&key=AIzaSyDxSgGQX6jrn4iq6dyIWAKEOTneZ3Z8PtU").responseJSON { response in
+            print(response.description)
+            let json = response.result.value as? [String: Any]
+            let routes = json?["routes"] as! [[String:Any]]
+            
+            for route in routes
+            {
+                let routeOverviewPolyline = route["overview_polyline"] as? [String:Any]
+                let points = routeOverviewPolyline?["points"] as? String
+                let path = GMSPath.init(fromEncodedPath: points!)
+                let polyline = GMSPolyline.init(path: path)
+                polyline.strokeWidth = 5
+                polyline.map = self.mapView
+            }
+        
+        }
+        
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
