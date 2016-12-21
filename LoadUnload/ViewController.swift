@@ -19,11 +19,13 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     var toTFSelected: Bool = false
     
     //images
-    let below_one_ton_Selected = UIImage(named: "open_0_75_ton_selected")
+    let below_one_ton_open = UIImage(named: "open_0_75_ton_selected")
     let below_one_ton = UIImage(named: "open_0_75_ton")
+    let below_one_ton_closed = UIImage(named: "closed_0_75_ton_selected" )
     
-    let one_ton_Selected = UIImage(named: "open_selected_1_ton")
+    let one_ton_open = UIImage(named: "open_selected_1_ton")
     let one_ton = UIImage(named: "open_1_ton")
+    let one_ton_closed = UIImage(named : "closed_1_ton_selected")
     
     let below_two_ton_Selected = UIImage(named: "open_selected_1_5_ton")
     let below_two_ton = UIImage(named: "open_1_5_ton")
@@ -31,16 +33,17 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     let two_ton_Selected = UIImage(named: "closed_2_ton_selected")
     let two_ton = UIImage(named: "open_2_ton")
     
-    
+    @IBOutlet var openButton: UIButton!
+    @IBOutlet var closeButton: UIButton!
+    @IBOutlet var openCloseButtonView: UIView!
     @IBOutlet var loadingButton: UIButton!
     @IBOutlet var belowOneTonButton: UIButton!
     @IBOutlet var oneTonButton: UIButton!
     @IBOutlet var aboveOneTonButton: UIButton!
     @IBOutlet var twoTonButton: UIButton!
-    
-    
     @IBOutlet var mapView: GMSMapView!
-    //    var mapView = GMSMapView()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +55,13 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         oneTonButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         aboveOneTonButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         twoTonButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        
+        
+        openButton.imageEdgeInsets = UIEdgeInsetsMake(0.0, 0.0 , 0.0, 0.0)
+        openButton.titleEdgeInsets = UIEdgeInsetsMake(0.0, 10.0, 0.0, 0)
+       
+        closeButton.imageEdgeInsets = UIEdgeInsetsMake(0.0, 0.0 , 0.0, 0.0)
+        closeButton.titleEdgeInsets = UIEdgeInsetsMake(0.0, 10.0, 0.0, 0)
         
         mapView = GMSMapView()
         mapView.isMyLocationEnabled = true
@@ -70,7 +80,8 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         toTextField.delegate = self
         self.view.addSubview(toTextField)
         
-        
+        mapView.addSubview(openCloseButtonView)
+        openCloseButtonHidden(hidden: true)
     }
     
     
@@ -108,31 +119,38 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     }
     
     @IBAction func belowOneTonButtonclicked(_ sender: UIButton) {
+        openCloseButtonHidden(hidden: false)
+        openCloseButtonView.frame = CGRect(x: mapView.frame.size.width/3-50, y:mapView.frame.size.height-80 , width: openCloseButtonView.frame.size.width, height: openCloseButtonView.frame.size.height)
         if sender.isSelected == false{
             buttonsUnSelected()
             sender.isSelected = true
-            sender.setImage(below_one_ton_Selected, for: UIControlState.normal)
+            sender.setImage(below_one_ton_open, for: UIControlState.normal)
         }else{
             sender.isSelected = false
             sender.setImage(below_one_ton, for: UIControlState.normal)
+            openCloseButtonHidden(hidden: true)
         }
         
     }
     
     @IBAction func oneTonButtonClicked(_ sender: UIButton) {
+        openCloseButtonHidden(hidden: false)
+        openCloseButtonView.frame = CGRect(x: mapView.frame.size.width/2-40, y:mapView.frame.size.height-80 , width: openCloseButtonView.frame.size.width, height: openCloseButtonView.frame.size.height)
         if sender.isSelected == false{
             buttonsUnSelected()
             sender.isSelected = true
-            sender.setImage(below_one_ton_Selected, for: UIControlState.normal)
+            sender.setImage(below_one_ton_open, for: UIControlState.normal)
         }else{
             sender.isSelected = false
             sender.setImage(below_two_ton, for: UIControlState.normal)
+            openCloseButtonHidden(hidden: true)
         }
         
-        
     }
-
+    
     @IBAction func aboveOneTonButtonClicked(_ sender: UIButton) {
+        openCloseButtonHidden(hidden: false)
+        openCloseButtonView.frame = CGRect(x: mapView.frame.size.width/2+30, y:mapView.frame.size.height-80 , width: openCloseButtonView.frame.size.width, height: openCloseButtonView.frame.size.height)
         if sender.isSelected == false{
             buttonsUnSelected()
             sender.isSelected = true
@@ -140,11 +158,15 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         }else{
             sender.isSelected = false
             sender.setImage(below_two_ton, for: UIControlState.normal)
+            openCloseButtonHidden(hidden: true)
         }
+        
         
     }
     
     @IBAction func twoTonButtonClicked(_ sender: UIButton) {
+        openCloseButtonHidden(hidden: false)
+        openCloseButtonView.frame = CGRect(x: mapView.frame.size.width-90, y:mapView.frame.size.height-80 , width: openCloseButtonView.frame.size.width, height: openCloseButtonView.frame.size.height)
         if sender.isSelected == false{
             buttonsUnSelected()
             sender.isSelected = true
@@ -152,9 +174,30 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         }else{
             sender.isSelected = false
             sender.setImage(two_ton, for: UIControlState.normal)
+            openCloseButtonHidden(hidden: true)
         }
+        
+        
     }
     
+    @IBAction func openButtonClicked(_ sender: UIButton) {
+        
+        
+    }
+    @IBAction func closeButtonClicked(_ sender: UIButton) {
+    
+    
+    }
+    func openCloseButtonHidden(hidden : Bool) {
+        
+        if hidden{
+              openCloseButtonView.isHidden = true
+        
+        }
+        else{
+              openCloseButtonView.isHidden = false
+        }
+    }
     func buttonsUnSelected(){
         belowOneTonButton.isSelected = false
         oneTonButton.isSelected = false
@@ -200,9 +243,9 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
             getRoutePoints(from: marker.position, to: marker1.position)
         }
     }
-   
+    
     func getRoutePoints(from : CLLocationCoordinate2D , to : CLLocationCoordinate2D) {
-     
+        
         Alamofire.request("https://maps.googleapis.com/maps/api/directions/json?origin=\(from.latitude),\(from.longitude)&destination=\(to.latitude),\(to.longitude)&key=AIzaSyDxSgGQX6jrn4iq6dyIWAKEOTneZ3Z8PtU").responseJSON { response in
             print(response.description)
             let json = response.result.value as? [String: Any]
