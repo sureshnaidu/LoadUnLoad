@@ -47,6 +47,8 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         UIApplication.shared.statusBarStyle = .lightContent
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -67,7 +69,7 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         view.addSubview(mapView)
-        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-189)
+        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-195)
         
         //text fields
         fromTextField = UITextField(frame: CGRect(x: 40, y: 20, width: view.frame.size.width-80, height: 25.00));
@@ -82,16 +84,19 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         
         mapView.addSubview(openCloseButtonView)
         openCloseButtonHidden(hidden: true)
+        
+        prepareToolbar()
+
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if UserSession.shared.token == nil{
-            let vc : FlashScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "flashScreenViewController") as! FlashScreenViewController
-            present(vc, animated: true, completion: nil)
-        }
+//        if UserSession.shared.token == nil{
+//            let vc : FlashScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "flashScreenViewController") as! FlashScreenViewController
+//            present(vc, animated: true, completion: nil)
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -283,4 +288,16 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
+}
+
+extension ViewController {
+    fileprivate func prepareToolbar() {
+        guard let tc = toolbarController else {
+            return
+        }
+        tc.toolbar.title = "Material"
+        tc.statusBar.backgroundColor = UIColor.black
+        tc.toolbar.backgroundColor = UIColor.black
+        tc.statusBarStyle = .lightContent
+    }
 }
