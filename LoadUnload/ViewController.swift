@@ -18,20 +18,7 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     var fromTFSelected: Bool = false
     var toTFSelected: Bool = false
     
-    //images
-    let below_one_ton_open = UIImage(named: "open_0_75_ton_selected")
-    let below_one_ton = UIImage(named: "open_0_75_ton")
-    let below_one_ton_closed = UIImage(named: "closed_0_75_ton_selected" )
-    
-    let one_ton_open = UIImage(named: "open_selected_1_ton")
-    let one_ton = UIImage(named: "open_1_ton")
-    let one_ton_closed = UIImage(named : "closed_1_ton_selected")
-    
-    let below_two_ton_Selected = UIImage(named: "open_selected_1_5_ton")
-    let below_two_ton = UIImage(named: "open_1_5_ton")
-    
-    let two_ton_Selected = UIImage(named: "closed_2_ton_selected")
-    let two_ton = UIImage(named: "open_2_ton")
+  
     
     @IBOutlet var openButton: UIButton!
     @IBOutlet var closeButton: UIButton!
@@ -129,10 +116,10 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         if sender.isSelected == false{
             buttonsUnSelected()
             sender.isSelected = true
-            sender.setImage(below_one_ton_open, for: UIControlState.normal)
+//            sender.setImage(below_one_ton_open, for: UIControlState.normal)
         }else{
             sender.isSelected = false
-            sender.setImage(below_one_ton, for: UIControlState.normal)
+//            sender.setImage(below_one_ton, for: UIControlState.normal)
             openCloseButtonHidden(hidden: true)
         }
         
@@ -144,10 +131,10 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         if sender.isSelected == false{
             buttonsUnSelected()
             sender.isSelected = true
-            sender.setImage(below_one_ton_open, for: UIControlState.normal)
+//            sender.setImage(below_one_ton_open, for: UIControlState.normal)
         }else{
             sender.isSelected = false
-            sender.setImage(below_two_ton, for: UIControlState.normal)
+//            sender.setImage(below_two_ton, for: UIControlState.normal)
             openCloseButtonHidden(hidden: true)
         }
         
@@ -159,10 +146,10 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         if sender.isSelected == false{
             buttonsUnSelected()
             sender.isSelected = true
-            sender.setImage(below_two_ton_Selected, for: UIControlState.normal)
+//            sender.setImage(below_two_ton_Selected, for: UIControlState.normal)
         }else{
             sender.isSelected = false
-            sender.setImage(below_two_ton, for: UIControlState.normal)
+//            sender.setImage(below_two_ton, for: UIControlState.normal)
             openCloseButtonHidden(hidden: true)
         }
         
@@ -175,16 +162,26 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         if sender.isSelected == false{
             buttonsUnSelected()
             sender.isSelected = true
-            sender.setImage(two_ton_Selected, for: UIControlState.normal)
+//            sender.setImage(two_ton_Selected, for: UIControlState.normal)
         }else{
             sender.isSelected = false
-            sender.setImage(two_ton, for: UIControlState.normal)
+//            sender.setImage(two_ton, for: UIControlState.normal)
             openCloseButtonHidden(hidden: true)
         }
         
         
     }
     
+    @IBAction func loadingButtonClicked(_ sender: UIButton) {
+       
+
+        if sender.isSelected == false{
+            sender.isSelected = true
+        }else{
+            sender.isSelected = false
+        }
+        
+    }
     @IBAction func openButtonClicked(_ sender: UIButton) {
         
         
@@ -209,10 +206,10 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         aboveOneTonButton.isSelected = false
         twoTonButton.isSelected = false
         
-        twoTonButton.setImage(two_ton, for: UIControlState.normal)
-        belowOneTonButton.setImage(below_one_ton, for: UIControlState.normal)
-        aboveOneTonButton.setImage(below_two_ton, for: UIControlState.normal)
-        oneTonButton.setImage(one_ton, for: UIControlState.normal)
+//        twoTonButton.setImage(two_ton, for: UIControlState.normal)
+//        belowOneTonButton.setImage(below_one_ton, for: UIControlState.normal)
+//        aboveOneTonButton.setImage(below_two_ton, for: UIControlState.normal)
+//        oneTonButton.setImage(one_ton, for: UIControlState.normal)
         
     }
     
@@ -222,9 +219,6 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
         dismiss(animated: true, completion: nil)
         
         if fromTFSelected {
