@@ -10,12 +10,15 @@ import UIKit
 import Material
 class LeftSideMenuViewController: UIViewController, UITableViewDelegate , UITableViewDataSource {
     
+    @IBOutlet var phoneLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!
     var elementsArray: Array<String> = []
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        
+        nameLabel.text = UserSession.user()?.name ?? ""
+        phoneLabel.text = UserSession.user()?.mobileNo ?? ""
         elementsArray = ["Book your truck","Booking history", "Rate card" , "Corporate profile", "Emergency contacts","Support" , "About" , "Logout"]
     }
     
