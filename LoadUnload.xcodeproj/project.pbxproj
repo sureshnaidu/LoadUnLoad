@@ -24,6 +24,11 @@
 		84C611731E005FD5007D4DFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C611711E005FD5007D4DFA /* LaunchScreen.storyboard */; };
 		84C6117E1E005FD5007D4DFA /* LoadUnloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C6117D1E005FD5007D4DFA /* LoadUnloadTests.swift */; };
 		84C611891E005FD5007D4DFA /* LoadUnloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C611881E005FD5007D4DFA /* LoadUnloadUITests.swift */; };
+		D9E814791E0BC5D200E3F64A /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E814751E0BC5D200E3F64A /* NetworkInterface.swift */; };
+		D9E8147A1E0BC5D200E3F64A /* MPMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E814761E0BC5D200E3F64A /* MPMedia.swift */; };
+		D9E8147B1E0BC5D200E3F64A /* LUNetworkRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E814771E0BC5D200E3F64A /* LUNetworkRequests.swift */; };
+		D9E8147C1E0BC5D200E3F64A /* LUError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E814781E0BC5D200E3F64A /* LUError.swift */; };
+		D9E8147F1E0BC83900E3F64A /* UtilExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E8147E1E0BC83900E3F64A /* UtilExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +76,11 @@
 		84C6118A1E005FD5007D4DFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B83A2DF34F03A10185A1C31F /* Pods_LoadUnload.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadUnload.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2023D81B9E999461B8C09BB /* Pods_LoadUnloadTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadUnloadTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9E814751E0BC5D200E3F64A /* NetworkInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
+		D9E814761E0BC5D200E3F64A /* MPMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPMedia.swift; sourceTree = "<group>"; };
+		D9E814771E0BC5D200E3F64A /* LUNetworkRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUNetworkRequests.swift; sourceTree = "<group>"; };
+		D9E814781E0BC5D200E3F64A /* LUError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUError.swift; sourceTree = "<group>"; };
+		D9E8147E1E0BC83900E3F64A /* UtilExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,8 +173,10 @@
 			isa = PBXGroup;
 			children = (
 				84C611681E005FD5007D4DFA /* AppDelegate.swift */,
-				84092C6C1E081B03001CC38C /* UserSession.swift */,
-				840616371E0B961B00EF6796 /* Contacts.swift */,
+				D9E8147D1E0BC82700E3F64A /* Extensions */,
+				D9E814741E0BC55300E3F64A /* Network */,
+				D9E814731E0BC2A500E3F64A /* Util */,
+				D9E814721E0BC29A00E3F64A /* Session */,
 				840616361E0B95E200EF6796 /* HomeView */,
 				840616351E0B95CA00EF6796 /* Login */,
 				840616341E0B95B400EF6796 /* SideMenu */,
@@ -202,6 +214,41 @@
 				2CF9275AE0F36B02BFB5053B /* Pods_LoadUnloadUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D9E814721E0BC29A00E3F64A /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				84092C6C1E081B03001CC38C /* UserSession.swift */,
+			);
+			name = Session;
+			sourceTree = "<group>";
+		};
+		D9E814731E0BC2A500E3F64A /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				840616371E0B961B00EF6796 /* Contacts.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		D9E814741E0BC55300E3F64A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D9E814751E0BC5D200E3F64A /* NetworkInterface.swift */,
+				D9E814761E0BC5D200E3F64A /* MPMedia.swift */,
+				D9E814771E0BC5D200E3F64A /* LUNetworkRequests.swift */,
+				D9E814781E0BC5D200E3F64A /* LUError.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		D9E8147D1E0BC82700E3F64A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D9E8147E1E0BC83900E3F64A /* UtilExtensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,11 +442,16 @@
 				84C6116B1E005FD5007D4DFA /* ViewController.swift in Sources */,
 				8444FD661E0190F2004D5A62 /* FlashScreenViewController.swift in Sources */,
 				846FE6ED1E0AF6E100AEA5BF /* BookingHostoryViewController.swift in Sources */,
+				D9E8147C1E0BC5D200E3F64A /* LUError.swift in Sources */,
+				D9E814791E0BC5D200E3F64A /* NetworkInterface.swift in Sources */,
 				84C611691E005FD5007D4DFA /* AppDelegate.swift in Sources */,
+				D9E8147A1E0BC5D200E3F64A /* MPMedia.swift in Sources */,
 				84092C6D1E081B03001CC38C /* UserSession.swift in Sources */,
 				840616381E0B961B00EF6796 /* Contacts.swift in Sources */,
 				842A11C31E01C930000657AF /* LogInViewController.swift in Sources */,
 				840027921E0AB9E50063A195 /* LeftSideMenuViewController.swift in Sources */,
+				D9E8147B1E0BC5D200E3F64A /* LUNetworkRequests.swift in Sources */,
+				D9E8147F1E0BC83900E3F64A /* UtilExtensions.swift in Sources */,
 				842A11C11E01A324000657AF /* RegisterViewController.swift in Sources */,
 				840027981E0ABB7B0063A195 /* AppToolbarController.swift in Sources */,
 			);
@@ -553,7 +605,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = AX766J88NA;
 				INFOPLIST_FILE = LoadUnload/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FreeLancer.LoadUnload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -570,7 +622,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = AX766J88NA;
 				INFOPLIST_FILE = LoadUnload/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FreeLancer.LoadUnload;
 				PRODUCT_NAME = "$(TARGET_NAME)";

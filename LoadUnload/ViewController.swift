@@ -80,10 +80,10 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        if UserSession.shared.token == nil{
-//            let vc : FlashScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "flashScreenViewController") as! FlashScreenViewController
-//            present(vc, animated: true, completion: nil)
-//        }
+        if UserSession.user()?.token == nil{
+            let vc : FlashScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "flashScreenViewController") as! FlashScreenViewController
+            present(vc, animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -289,6 +289,8 @@ extension ViewController {
         guard let tc = toolbarController else {
             return
         }
+        
+        
         tc.toolbar.title = "Material"
         tc.statusBar.backgroundColor = UIColor.black
         tc.toolbar.backgroundColor = UIColor.black
