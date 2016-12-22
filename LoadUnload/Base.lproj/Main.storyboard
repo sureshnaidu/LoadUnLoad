@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nyd-1s-82o" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="476"/>
+                                <rect key="frame" x="-4" y="0.0" width="383" height="476"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nfc-fO-LqY">
                                         <rect key="frame" x="144" y="394" width="90" height="82"/>
@@ -73,7 +73,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrV-ER-yPJ">
-                                <rect key="frame" x="0.0" y="553" width="186.5" height="50"/>
+                                <rect key="frame" x="-4" y="553" width="190.5" height="50"/>
                                 <color key="backgroundColor" red="0.094117647060000004" green="0.074509803920000006" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="EDK-Tj-dUV"/>
@@ -84,7 +84,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq1-hA-udE">
-                                <rect key="frame" x="188.5" y="553" width="186.5" height="50"/>
+                                <rect key="frame" x="188.5" y="553" width="190.5" height="50"/>
                                 <color key="backgroundColor" red="0.094117647060000004" green="0.074509803920000006" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
                                 <state key="normal" title="BOOK NOW">
@@ -253,7 +253,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Kq1-hA-udE" secondAttribute="trailing" constant="-16" id="6Xb-jb-3Bb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Kq1-hA-udE" secondAttribute="trailing" constant="-20" id="6Xb-jb-3Bb"/>
                             <constraint firstItem="Nyd-1s-82o" firstAttribute="leading" secondItem="XrV-ER-yPJ" secondAttribute="leading" id="7Lo-kr-7bw"/>
                             <constraint firstItem="Nyd-1s-82o" firstAttribute="centerX" secondItem="cb7-KY-joo" secondAttribute="centerX" id="7VT-KM-x2V"/>
                             <constraint firstItem="Nyd-1s-82o" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Duz-UU-hHD"/>
@@ -267,7 +267,7 @@
                             <constraint firstItem="cb7-KY-joo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-6" id="R6O-G4-SPF"/>
                             <constraint firstItem="cb7-KY-joo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="WX6-RC-jvf"/>
                             <constraint firstItem="Kq1-hA-udE" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gz5-EM-fI6"/>
-                            <constraint firstItem="XrV-ER-yPJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="o2Z-LB-ccx"/>
+                            <constraint firstItem="XrV-ER-yPJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="o2Z-LB-ccx"/>
                             <constraint firstItem="Kq1-hA-udE" firstAttribute="leading" secondItem="XrV-ER-yPJ" secondAttribute="trailing" constant="2" id="ooT-LU-89D"/>
                         </constraints>
                     </view>
@@ -769,6 +769,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="xu7-2H-5s1" secondAttribute="trailing" constant="12" id="yl7-Ma-YDI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="xu7-2H-5s1" id="w6d-cl-abA"/>
+                        <outlet property="phoneLabel" destination="GGx-ry-4tA" id="cbV-mS-29O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ljN-7H-dsH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
