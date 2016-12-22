@@ -82,8 +82,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         if let phone  = phoneNumber.text , let password = password.text {
             let payload = ["MobileNo":phone, "Password": password]
-            
-            
             NetworkInterface.fetchJSON(.login, headers: [:], params: [:], payload: payload, requestCompletionHander: { (success,data, response, error) -> (Void) in
                 if success, let token = data?["token"] as? String {
                     UserSession.shared.token = token
