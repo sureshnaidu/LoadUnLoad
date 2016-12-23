@@ -45,6 +45,10 @@ extension UserSession{
     }
     
     static func logout(){
+        NetworkInterface.fetchJSON(.logout) { (success, data, response, error) -> (Void) in
+             
+        }
+        
         UserSession.shared.token = nil
         UserSession.shared.mobileNo = nil
         UserSession.shared.name = nil
@@ -54,6 +58,8 @@ extension UserSession{
         } catch let error as NSError {
             print(error.debugDescription)
         }
+        
+        
     }
     
     static func user() -> UserSession? {
