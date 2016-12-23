@@ -177,11 +177,35 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         
     }
     @IBAction func openButtonClicked(_ sender: UIButton) {
-        
+         openCloseButtonHidden(hidden: true)
+        if belowOneTonButton.isSelected {
+            
+        }
+        else if oneTonButton.isSelected {
+            
+        }
+        else if aboveOneTonButton.isSelected {
+            
+        }
+        else{
+            
+        }
         
     }
     @IBAction func closeButtonClicked(_ sender: UIButton) {
-    
+         openCloseButtonHidden(hidden: true)
+        if belowOneTonButton.isSelected {
+
+        }
+        else if oneTonButton.isSelected {
+
+        }
+        else if aboveOneTonButton.isSelected {
+
+        }
+        else{
+
+        }
     
     }
     
@@ -189,19 +213,19 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         
         if belowOneTonButton.isSelected {
             openButton.setImage(UIImage(named:"open_button"), for: .normal)
-            closeButton.setImage(UIImage(named:"open_button"), for: .normal)
+            closeButton.setImage(UIImage(named:"close_button"), for: .normal)
         }
-        if oneTonButton.isSelected {
+       else if oneTonButton.isSelected {
             openButton.setImage(UIImage(named:"open_1_button"), for: .normal)
             closeButton.setImage(UIImage(named:"close_1_button"), for: .normal)
         }
-        if aboveOneTonButton.isSelected {
-            openButton.setImage(UIImage(named:"open_1_button"), for: .normal)
-            closeButton.setImage(UIImage(named:"close_1.75_ton"), for: .normal)
+        else if aboveOneTonButton.isSelected {
+            openButton.setImage(UIImage(named:"open_1.5_ton_button"), for: .normal)
+            closeButton.setImage(UIImage(named:"close_1.5_Ton_button"), for: .normal)
         }
-        if belowOneTonButton.isSelected {
-            openButton.setImage(UIImage(named:"open_1_button"), for: .normal)
-            closeButton.setImage(UIImage(named:"close_2_button"), for: .normal)
+        else{
+            openButton.setImage(UIImage(named:"open_2_ton_button"), for: .normal)
+            closeButton.setImage(UIImage(named:"close_2_ton_button"), for: .normal)
         }
         
     }
@@ -300,10 +324,11 @@ extension ViewController {
             return
         }
         
-        
-        tc.toolbar.title = "Material"
-        tc.statusBar.backgroundColor = UIColor.black
-        tc.toolbar.backgroundColor = UIColor.black
+        tc.toolbar.title = "Book Your Pick-C Truck"
+        tc.toolbar.titleLabel.textColor = UIColorFromRGB(rgbValue: UInt(Constants.YELLOW_THEME_COLOR))
+        tc.statusBar.backgroundColor = UIColorFromRGB(rgbValue: UInt(Constants.DARK_THEME_COLOR))
+        tc.toolbar.backgroundColor = UIColorFromRGB(rgbValue: UInt(Constants.DARK_THEME_COLOR))
         tc.statusBarStyle = .lightContent
     }
+  
 }

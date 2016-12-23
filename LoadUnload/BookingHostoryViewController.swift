@@ -15,6 +15,12 @@ class BookingHostoryViewController: UIViewController , UITableViewDataSource, UI
     
         // Do any additional setup after loading the view.
         view.backgroundColor = .black
+        
+        guard let tc = toolbarController else {
+            return
+        }
+        tc.toolbar.title = "Booking History"
+
     }
     
     override func didReceiveMemoryWarning() {

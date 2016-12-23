@@ -45,8 +45,12 @@ class LeftSideMenuViewController: UIViewController, UITableViewDelegate , UITabl
         cell.imageView?.image = UIImage(named:imageName)
         cell.textLabel?.text = self.elementsArray[indexPath.row]
         cell.textLabel?.textColor = UIColor.gray //UIColorFromRGB(rgbValue: 0xededed)
-        
         // Returning the cell
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = backgroundView
+        
         return cell
     }
     
@@ -56,12 +60,17 @@ class LeftSideMenuViewController: UIViewController, UITableViewDelegate , UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        
         let rootView : UIViewController
         
         if indexPath.row == 0  {
             rootView =  UIStoryboard.viewController(identifier: "ViewController") as! ViewController
 
-        }else if indexPath.row == 7{
+        }
+        else if indexPath.row == 2 || indexPath.row == 5 || indexPath.row == 6{
+            rootView =  UIStoryboard.viewController(identifier: "PCWebViewViewController") as! PCWebViewViewController
+        }
+        else if indexPath.row == 7{
             UserSession.logout()
             rootView =  UIStoryboard.viewController(identifier: "ViewController") as! ViewController
         }

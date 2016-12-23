@@ -27,5 +27,9 @@ class Constants {
     static let OPEN2TON = "open_2_ton"
     static let CLOSED2TONSELECTED = "closed_2_ton_selected"
     
+    static let YELLOW_THEME_COLOR = 0xf8f206
+    static let DARK_THEME_COLOR = 0x181300
+    static let LIGHT_THEME_COLOR = 0xededed
+    
     
 }
