@@ -61,6 +61,9 @@ class LeftSideMenuViewController: UIViewController, UITableViewDelegate , UITabl
         if indexPath.row == 0  {
             rootView =  UIStoryboard.viewController(identifier: "ViewController") as! ViewController
 
+        }else if indexPath.row == 7{
+            UserSession.logout()
+            rootView =  UIStoryboard.viewController(identifier: "ViewController") as! ViewController
         }
         else{
             rootView =  UIStoryboard.viewController(identifier: "BookingHostoryViewController") as! BookingHostoryViewController

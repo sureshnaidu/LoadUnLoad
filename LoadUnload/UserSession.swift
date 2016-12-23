@@ -32,6 +32,8 @@ class UserSession: NSObject, NSCoding {
         name = aDecoder.decodeObject(forKey: "name") as? String
         emailID = aDecoder.decodeObject(forKey: "emailID") as? String
     }
+    
+
 }
 
 extension UserSession{
@@ -39,6 +41,18 @@ extension UserSession{
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(UserSession.shared, toFile: path().path)
         if !isSuccessfulSave {
             print("Failed to save user...")
+        }
+    }
+    
+    static func logout(){
+        UserSession.shared.token = nil
+        UserSession.shared.mobileNo = nil
+        UserSession.shared.name = nil
+        UserSession.shared.emailID = nil
+        do {
+            try FileManager().removeItem(atPath: path().path)
+        } catch let error as NSError {
+            print(error.debugDescription)
         }
     }
     
