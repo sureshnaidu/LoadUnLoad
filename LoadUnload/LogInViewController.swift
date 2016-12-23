@@ -82,6 +82,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         if let phone  = phoneNumber.text , let password = password.text {
             let payload = ["MobileNo":phone, "Password": password]
+            showProgress()
             NetworkInterface.fetchJSON(.login, headers: [:], params: [:], payload: payload, requestCompletionHander: { (success,data, response, error) -> (Void) in
                 if success, let token = data?["token"] as? String {
                     UserSession.shared.token = token
@@ -90,7 +91,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     self.customerInfo()
                     
                 }else{
-                    
+                    hideProgress()
+                    self.alert(message: "Invalid username/password")
                 }
             })
         }
@@ -98,6 +100,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     func customerInfo(){
         NetworkInterface.fetchJSON(.customerInfo, headers: [:], params: ["mobile":UserSession.user()!.mobileNo!]) { (success, data, response, error) -> (Void) in
+            hideProgress()
             if success == true, data?["MobileNo"] != nil {
                 UserSession.shared.emailID = data?["EmailID"] as? String
                 UserSession.shared.mobileNo = data?["MobileNo"] as? String

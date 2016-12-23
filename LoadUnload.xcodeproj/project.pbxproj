@@ -29,6 +29,8 @@
 		D9E8147B1E0BC5D200E3F64A /* LUNetworkRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E814771E0BC5D200E3F64A /* LUNetworkRequests.swift */; };
 		D9E8147C1E0BC5D200E3F64A /* LUError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E814781E0BC5D200E3F64A /* LUError.swift */; };
 		D9E8147F1E0BC83900E3F64A /* UtilExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E8147E1E0BC83900E3F64A /* UtilExtensions.swift */; };
+		D9E814811E0D77D700E3F64A /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E814801E0D77D700E3F64A /* ViewControllerExtension.swift */; };
+		D9E814831E0D787100E3F64A /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E814821E0D787100E3F64A /* HUD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		D9E814771E0BC5D200E3F64A /* LUNetworkRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUNetworkRequests.swift; sourceTree = "<group>"; };
 		D9E814781E0BC5D200E3F64A /* LUError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUError.swift; sourceTree = "<group>"; };
 		D9E8147E1E0BC83900E3F64A /* UtilExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilExtensions.swift; sourceTree = "<group>"; };
+		D9E814801E0D77D700E3F64A /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		D9E814821E0D787100E3F64A /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,7 +250,9 @@
 		D9E8147D1E0BC82700E3F64A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D9E814801E0D77D700E3F64A /* ViewControllerExtension.swift */,
 				D9E8147E1E0BC83900E3F64A /* UtilExtensions.swift */,
+				D9E814821E0D787100E3F64A /* HUD.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -452,6 +458,8 @@
 				840027921E0AB9E50063A195 /* LeftSideMenuViewController.swift in Sources */,
 				D9E8147B1E0BC5D200E3F64A /* LUNetworkRequests.swift in Sources */,
 				D9E8147F1E0BC83900E3F64A /* UtilExtensions.swift in Sources */,
+				D9E814811E0D77D700E3F64A /* ViewControllerExtension.swift in Sources */,
+				D9E814831E0D787100E3F64A /* HUD.swift in Sources */,
 				842A11C11E01A324000657AF /* RegisterViewController.swift in Sources */,
 				840027981E0ABB7B0063A195 /* AppToolbarController.swift in Sources */,
 			);

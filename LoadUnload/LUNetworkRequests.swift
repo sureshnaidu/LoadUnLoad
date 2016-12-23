@@ -10,7 +10,7 @@ enum LURequestType {
     case login
     case signup
     case customerInfo
-
+    case logout
 }
 
 
@@ -30,7 +30,10 @@ class LUNetworkRequests {
             let path = "/api/master/customer/\(params!["mobile"]!)"
             let endpoint = RequestConstants.LUURL + path
             request = self.createGETRequest(endpoint, headers: headers, params: params)
-            
+        case .logout:
+            let path = "/api/master/customer/logout"
+            let endpoint = RequestConstants.LUURL + path
+            request = self.createGETRequest(endpoint, headers: headers, params: params)
         default:
             break
         }

@@ -10,19 +10,22 @@ PODS:
   - Material (2.4.3):
     - Material/Core (= 2.4.3)
   - Material/Core (2.4.3)
+  - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - GoogleMaps
   - GooglePlaces
   - Material (~> 2.4)
+  - SVProgressHUD (= 2.1.2)
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
   GooglePlaces: 35636d86e5020cba3856eb988c09a5491de0a65a
   Material: 29f2b854ee92da272e3609af165b861391deea73
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: 63c975901570e78fdb28cc165e05f13ca749ee22
+PODFILE CHECKSUM: 663a86893d9b290476ad065c433f0ddeef70e76f
 
 COCOAPODS: 1.1.1
