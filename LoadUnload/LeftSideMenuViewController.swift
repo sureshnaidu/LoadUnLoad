@@ -13,6 +13,7 @@ class LeftSideMenuViewController: UIViewController, UITableViewDelegate , UITabl
     @IBOutlet var phoneLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
     var elementsArray: Array<String> = []
+     var imagesArray: Array<String> = []
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -20,7 +21,10 @@ class LeftSideMenuViewController: UIViewController, UITableViewDelegate , UITabl
         nameLabel.text = UserSession.user()?.name ?? ""
         phoneLabel.text = UserSession.user()?.mobileNo ?? ""
         elementsArray = ["Book your truck","Booking history", "Rate card" , "Corporate profile", "Emergency contacts","Support" , "About" , "Logout"]
+        
+       imagesArray =  ["ic_nav_my_rides","ic_nav_my_rides","ic_nav_rate_card","ic_office_favourite","ic_nav_emergency_contact","ic_nav_support","about","logout"]
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -37,7 +41,8 @@ class LeftSideMenuViewController: UIViewController, UITableViewDelegate , UITabl
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "ElementCell")
         
         // Adding the right informations
-        cell.imageView?.image = UIImage(named: "source")
+        let imageName = self.imagesArray[indexPath.row]
+        cell.imageView?.image = UIImage(named:imageName)
         cell.textLabel?.text = self.elementsArray[indexPath.row]
         cell.textLabel?.textColor = UIColor.gray //UIColorFromRGB(rgbValue: 0xededed)
         

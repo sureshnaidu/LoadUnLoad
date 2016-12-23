@@ -116,10 +116,9 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         if sender.isSelected == false{
             buttonsUnSelected()
             sender.isSelected = true
-//            sender.setImage(below_one_ton_open, for: UIControlState.normal)
+            openCloseButtonImages()
         }else{
             sender.isSelected = false
-//            sender.setImage(below_one_ton, for: UIControlState.normal)
             openCloseButtonHidden(hidden: true)
         }
         
@@ -131,10 +130,9 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         if sender.isSelected == false{
             buttonsUnSelected()
             sender.isSelected = true
-//            sender.setImage(below_one_ton_open, for: UIControlState.normal)
+            openCloseButtonImages()
         }else{
             sender.isSelected = false
-//            sender.setImage(below_two_ton, for: UIControlState.normal)
             openCloseButtonHidden(hidden: true)
         }
         
@@ -146,13 +144,11 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         if sender.isSelected == false{
             buttonsUnSelected()
             sender.isSelected = true
-//            sender.setImage(below_two_ton_Selected, for: UIControlState.normal)
+            openCloseButtonImages()
         }else{
             sender.isSelected = false
-//            sender.setImage(below_two_ton, for: UIControlState.normal)
             openCloseButtonHidden(hidden: true)
         }
-        
         
     }
     
@@ -162,13 +158,11 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         if sender.isSelected == false{
             buttonsUnSelected()
             sender.isSelected = true
-//            sender.setImage(two_ton_Selected, for: UIControlState.normal)
+            openCloseButtonImages()
         }else{
             sender.isSelected = false
-//            sender.setImage(two_ton, for: UIControlState.normal)
             openCloseButtonHidden(hidden: true)
         }
-        
         
     }
     
@@ -190,6 +184,27 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     
     
     }
+    
+    func openCloseButtonImages(){
+        
+        if belowOneTonButton.isSelected {
+            openButton.setImage(UIImage(named:"open_button"), for: .normal)
+            closeButton.setImage(UIImage(named:"open_button"), for: .normal)
+        }
+        if oneTonButton.isSelected {
+            openButton.setImage(UIImage(named:"open_1_button"), for: .normal)
+            closeButton.setImage(UIImage(named:"close_1_button"), for: .normal)
+        }
+        if aboveOneTonButton.isSelected {
+            openButton.setImage(UIImage(named:"open_1_button"), for: .normal)
+            closeButton.setImage(UIImage(named:"close_1.75_ton"), for: .normal)
+        }
+        if belowOneTonButton.isSelected {
+            openButton.setImage(UIImage(named:"open_1_button"), for: .normal)
+            closeButton.setImage(UIImage(named:"close_2_button"), for: .normal)
+        }
+        
+    }
     func openCloseButtonHidden(hidden : Bool) {
         
         if hidden{
@@ -205,11 +220,6 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         oneTonButton.isSelected = false
         aboveOneTonButton.isSelected = false
         twoTonButton.isSelected = false
-        
-//        twoTonButton.setImage(two_ton, for: UIControlState.normal)
-//        belowOneTonButton.setImage(below_one_ton, for: UIControlState.normal)
-//        aboveOneTonButton.setImage(below_two_ton, for: UIControlState.normal)
-//        oneTonButton.setImage(one_ton, for: UIControlState.normal)
         
     }
     
