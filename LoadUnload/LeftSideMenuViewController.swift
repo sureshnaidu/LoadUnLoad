@@ -69,6 +69,20 @@ class LeftSideMenuViewController: UIViewController, UITableViewDelegate , UITabl
         }
         else if indexPath.row == 2 || indexPath.row == 5 || indexPath.row == 6{
             rootView =  UIStoryboard.viewController(identifier: "PCWebViewViewController") as! PCWebViewViewController
+            switch indexPath.row {
+            case 2:
+                (rootView as! PCWebViewViewController).pcweb = PCWeb.init(title: "Rate Card",url: "http://ragsarma-001-site6.htempurl.com/ratecard/mobile")
+                break
+            case 5:
+                (rootView as! PCWebViewViewController).pcweb = PCWeb.init(title: "Support",url: "http://ragsarma-001-site6.htempurl.com/Help/menu")
+                break
+            case 6:
+                (rootView as! PCWebViewViewController).pcweb = PCWeb.init(title: "About",url: "http://ragsarma-001-site6.htempurl.com/Help/menu")
+                break
+            default:
+                break
+            }
+            closeNavigationDrawer(result: true)
         }
         else if indexPath.row == 7{
             UserSession.logout()

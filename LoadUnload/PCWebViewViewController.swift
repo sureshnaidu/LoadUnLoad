@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import PKHUD
+struct PCWeb{
+    var title: String!
+    var url: String!
+    
+}
 
-class PCWebViewViewController: UIViewController {
-
+class PCWebViewViewController: UIViewController, UIWebViewDelegate {
+    var pcweb: PCWeb?
     @IBOutlet var webView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,15 +24,22 @@ class PCWebViewViewController: UIViewController {
         guard let tc = toolbarController else {
             return
         }
-        tc.toolbar.title = "Rate Card"
+        tc.toolbar.title = pcweb?.title ?? ""
+        let url =  pcweb?.url
+        webView.delegate = self
+        webView.loadRequest(URLRequest.init(url: URL.init(string: url!)!))
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = true
+        HUD.show(.label("Loading... Please Wait..."))
+    }
     
-
-   
-
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        HUD.hide()
+    }
 }

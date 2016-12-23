@@ -10,4 +10,5 @@ pod 'GoogleMaps'
 pod 'GooglePlaces'
 pod 'Alamofire', '~> 4.0'
 pod 'SVProgressHUD','2.1.2'
+pod 'PKHUD', '~> 4.0'
 end

@@ -10,6 +10,7 @@ PODS:
   - Material (2.4.3):
     - Material/Core (= 2.4.3)
   - Material/Core (2.4.3)
+  - PKHUD (4.1.0)
   - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - Material (~> 2.4)
+  - PKHUD (~> 4.0)
   - SVProgressHUD (= 2.1.2)
 
 SPEC CHECKSUMS:
@@ -24,8 +26,9 @@ SPEC CHECKSUMS:
   GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
   GooglePlaces: 35636d86e5020cba3856eb988c09a5491de0a65a
   Material: 29f2b854ee92da272e3609af165b861391deea73
+  PKHUD: a0ecdee9f67d9b462c0c5e4ba38400292ea6ae6e
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: 663a86893d9b290476ad065c433f0ddeef70e76f
+PODFILE CHECKSUM: 08d63e59af995cd41418e6ec50542bac9e71ef1a
 
 COCOAPODS: 1.1.1
