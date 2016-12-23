@@ -17,7 +17,8 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     var toTextField: UITextField! = nil
     var fromTFSelected: Bool = false
     var toTFSelected: Bool = false
-    
+    var locationManager = CLLocationManager()
+
   
     
     @IBOutlet var openButton: UIButton!
@@ -34,6 +35,10 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.mapView?.isMyLocationEnabled = true
+        //Location Manager code to fetch current location
+        self.locationManager.delegate = self
+        self.locationManager.startUpdatingLocation()
         
         
         UIApplication.shared.statusBarStyle = .lightContent
@@ -292,6 +297,21 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let location = locations.last
+        
+        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
+        
+        self.mapView?.animate(to: camera)
+        
+        //Finally stop updating location otherwise it will come again and again in this delegate
+        self.locationManager.stopUpdatingLocation()
+        
+    }
 }
 
 extension ViewController {
