@@ -43,6 +43,7 @@ class AppNavigationDrawerController: NavigationDrawerController {
 extension AppNavigationDrawerController: NavigationDrawerControllerDelegate {
     func navigationDrawerController(navigationDrawerController: NavigationDrawerController, willOpen position: NavigationDrawerPosition) {
         print("navigationDrawerController willOpen")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AppNavigationDrawerControllerOPEN"), object: nil)
     }
     
     func navigationDrawerController(navigationDrawerController: NavigationDrawerController, didOpen position: NavigationDrawerPosition) {

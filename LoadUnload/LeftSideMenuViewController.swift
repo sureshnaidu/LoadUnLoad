@@ -21,8 +21,8 @@ class LeftSideMenuViewController: UIViewController, UITableViewDelegate , UITabl
         nameLabel.text = UserSession.user()?.name ?? ""
         phoneLabel.text = UserSession.user()?.mobileNo ?? ""
         elementsArray = ["Book your truck","Booking history", "Rate card" , "Corporate profile", "Emergency contacts","Support" , "About" , "Logout"]
-        
-       imagesArray =  ["ic_nav_my_rides","ic_nav_my_rides","ic_nav_rate_card","ic_office_favourite","ic_nav_emergency_contact","ic_nav_support","about","logout"]
+        imagesArray =  ["ic_nav_my_rides","ic_nav_my_rides","ic_nav_rate_card","ic_office_favourite","ic_nav_emergency_contact","ic_nav_support","about","logout"]
+        listenNotifications()
     }
     
     
@@ -30,6 +30,14 @@ class LeftSideMenuViewController: UIViewController, UITableViewDelegate , UITabl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func listenNotifications(){
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "AppNavigationDrawerControllerOPEN"), object: nil, queue: nil) { (notification) in
+            self.nameLabel.text = UserSession.user()?.name ?? ""
+            self.phoneLabel.text = UserSession.user()?.mobileNo ?? ""
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return elementsArray.count

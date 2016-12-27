@@ -15,8 +15,6 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     var marker = GMSMarker()
     var fromTextField: UITextField! = nil
     var toTextField: UITextField! = nil
-    var fromTFSelected: Bool = false
-    var toTFSelected: Bool = false
     var locationManager = CLLocationManager()
 
   
@@ -88,6 +86,8 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         if UserSession.user()?.token == nil{
             let vc : FlashScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "flashScreenViewController") as! FlashScreenViewController
             present(vc, animated: true, completion: nil)
+        }else{
+            prepareMap()
         }
     }
     
@@ -96,16 +96,40 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func prepareMap(){
+        fromTextField.backgroundColor = UIColor.white
+        toTextField.backgroundColor = UIColor.white
+        // Check locked state
+        if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked == true {
+            // Both are locked
+            fromTextField.backgroundColor = UIColor.gray
+            toTextField.backgroundColor = UIColor.gray
+        }else if PCMapManager.shared.from.locked == true {   
+            fromTextField.backgroundColor = UIColor.gray
+        }else if PCMapManager.shared.to.locked == true{
+            toTextField.backgroundColor = UIColor.gray
+        }else{
+            // Both are open
+        }
+        
+        // Check selected state
+        if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked == true {
+            // No need to select any marker
+        }else if PCMapManager.shared.selected == .to {
+            // Selected to marker
+        }else{
+            // Selct from marker
+        }
+    }
+    
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
         if textField == fromTextField {
-            fromTFSelected = true
-            toTFSelected = false
+            PCMapManager.shared.selected = .from
         }
         else{
-            toTFSelected = true
-            fromTFSelected = false
+            PCMapManager.shared.selected = .to
         }
         
         let autocompleteController = GMSAutocompleteViewController()
@@ -260,7 +284,7 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         dismiss(animated: true, completion: nil)
         
-        if fromTFSelected {
+        if PCMapManager.shared.selected == .from {
             marker.position = place.coordinate
             marker.appearAnimation = kGMSMarkerAnimationPop
             marker.map = mapView
