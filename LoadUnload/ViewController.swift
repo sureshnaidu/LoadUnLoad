@@ -16,8 +16,8 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     var fromTextField: UITextField! = nil
     var toTextField: UITextField! = nil
     var locationManager = CLLocationManager()
-
-  
+    var lockButton: UIButton!
+    let geocoder = GMSGeocoder()
     
     @IBOutlet var openButton: UIButton!
     @IBOutlet var closeButton: UIButton!
@@ -58,6 +58,7 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         mapView = GMSMapView()
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
+        mapView.delegate = self
         view.addSubview(mapView)
         mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-195)
         
@@ -72,10 +73,10 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         toTextField.delegate = self
         self.view.addSubview(toTextField)
         
-        let button = UIButton(frame: CGRect(x: mapView.frame.size.width/2-30, y: mapView.frame.size.height/2-10, width: 60, height: 20))
-        button.backgroundColor = UIColor.red
-        button.addTarget(self, action: #selector(ViewController.lockButtonClicked), for:UIControlEvents.touchUpInside)
-        mapView.addSubview(button)
+        lockButton = UIButton(frame: CGRect(x: mapView.frame.size.width/2-30, y: mapView.frame.size.height/2-10, width: 60, height: 20))
+        lockButton.backgroundColor = UIColor.red
+        lockButton.addTarget(self, action: #selector(ViewController.lockButtonClicked), for:UIControlEvents.touchUpInside)
+        mapView.addSubview(lockButton)
         
         
         
@@ -245,7 +246,19 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     
     }
     func lockButtonClicked(){
-        
+        if PCMapManager.shared.selected == .to {
+            if toTextField.text?.characters.count == 0 { return }
+            PCMapManager.shared.to.locked = true
+        }else{
+            if fromTextField.text?.characters.count == 0 { return }
+            PCMapManager.shared.from.locked = true
+        }
+        if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked {
+            lockButton.isHidden = true
+        }else{
+            lockButton.isHidden = false
+        }
+        prepareMap()
     }
     
     func openCloseButtonImages(){
@@ -285,6 +298,47 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         twoTonButton.isSelected = false
         
     }
+    
+    
+    func mapCenter()-> CLLocationCoordinate2D{
+        let point:CGPoint = mapView.center;
+        let coor:CLLocationCoordinate2D = mapView.projection.coordinate(for: point)
+        return coor
+    }
+    
+    func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D, completion:@escaping (String?) -> Void)  {
+        
+        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
+            if let address = response?.firstResult() {
+                let lines = address.lines
+                completion(lines?.joined(separator: "\n"))
+            }
+        }
+    }
+    //MARK: Mapview delegate for update address on move
+    func mapView(_ mapView: GMSMapView, idleAt cameraPosition: GMSCameraPosition) {
+        geocoder.reverseGeocodeCoordinate(cameraPosition.target) { (response, error) in
+            guard error == nil else {
+                return
+            }
+            
+            if let result = response?.firstResult() {
+                var address = ""
+                guard let lines = result.lines else {
+                    return
+                }
+                address = lines.joined(separator: ", ")
+                
+                if PCMapManager.shared.selected == .to {
+                    self.toTextField.text = address
+                }else{
+                    self.fromTextField.text = address
+                }
+            }
+            
+        }
+    }
+
     
 }
 
