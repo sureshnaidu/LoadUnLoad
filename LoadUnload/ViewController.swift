@@ -72,6 +72,13 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         toTextField.delegate = self
         self.view.addSubview(toTextField)
         
+        let button = UIButton(frame: CGRect(x: mapView.frame.size.width/2-30, y: mapView.frame.size.height/2-10, width: 60, height: 20))
+        button.backgroundColor = UIColor.red
+        button.addTarget(self, action: #selector(ViewController.lockButtonClicked), for:UIControlEvents.touchUpInside)
+        mapView.addSubview(button)
+        
+        
+        
         mapView.addSubview(openCloseButtonView)
         openCloseButtonHidden(hidden: true)
         
@@ -236,6 +243,9 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
 
         }
     
+    }
+    func lockButtonClicked(){
+        
     }
     
     func openCloseButtonImages(){
