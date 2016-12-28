@@ -28,7 +28,10 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     @IBOutlet var aboveOneTonButton: UIButton!
     @IBOutlet var twoTonButton: UIButton!
     @IBOutlet var mapView: GMSMapView!
+    @IBOutlet var bookLaterButton: UIButton!
+    @IBOutlet var bookNowButton: UIButton!
 
+    @IBOutlet var buttonsView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,25 +63,53 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         mapView.settings.myLocationButton = true
         mapView.delegate = self
         view.addSubview(mapView)
-        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-195)
+        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-123)
         
         //text fields
-        fromTextField = UITextField(frame: CGRect(x: 40, y: 20, width: view.frame.size.width-80, height: 25.00));
+        fromTextField = UITextField(frame: CGRect(x: 20, y: 20, width: view.frame.size.width-40, height: 30));
         fromTextField.backgroundColor = UIColor.white
+        fromTextField.font = UIFont.systemFont(ofSize: 13)
         fromTextField.delegate = self
         self.view.addSubview(fromTextField)
         
-        toTextField = UITextField(frame: CGRect(x: 40, y: 47, width: view.frame.size.width-80, height: 25.00));
+        
+        let fromImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        fromImage.image = UIImage(named: "source")
+        fromTextField.leftViewMode = UITextFieldViewMode.always
+        fromTextField.leftView = fromImage
+        
+        
+        let fromLockButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        fromLockButton.setImage(UIImage(named : "unlock"), for: .normal)
+        fromLockButton.addTarget(self, action: #selector(ViewController.fromLockButtonPressed(_:)), for: .touchUpInside)
+        fromTextField.rightViewMode = UITextFieldViewMode.always
+        fromTextField.rightView = fromLockButton
+        
+        
+        //To TextField
+        toTextField = UITextField(frame: CGRect(x: 20, y: fromTextField.frame.size.height+fromTextField.frame.origin.y+4 , width: view.frame.size.width-40, height: 30));
         toTextField.backgroundColor = UIColor.white
         toTextField.delegate = self
+        toTextField.font = UIFont.systemFont(ofSize: 13)
         self.view.addSubview(toTextField)
         
-        lockButton = UIButton(frame: CGRect(x: mapView.frame.size.width/2-30, y: mapView.frame.size.height/2-10, width: 60, height: 20))
-        lockButton.backgroundColor = UIColor.red
+        let toImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        toImage.image = UIImage(named: "destination")
+        toTextField.leftViewMode = UITextFieldViewMode.always
+        toTextField.leftView = toImage
+        
+        let toLockButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        toLockButton.setImage(UIImage(named : "unlock"), for: .normal)
+        toLockButton.addTarget(self, action: #selector(ViewController.toLockButtonPressed(_:)), for: .touchUpInside)
+        toTextField.rightViewMode = UITextFieldViewMode.always
+        toTextField.rightView = toLockButton
+        
+        
+        lockButton = UIButton(frame: CGRect(x: mapView.frame.size.width/2-30, y: mapView.frame.size.height/2-50, width: 60, height: 30))
+        lockButton.backgroundColor = UIColorFromRGB(rgbValue: 0x181300)
+        lockButton.setTitle("Lock", for: .normal)
         lockButton.addTarget(self, action: #selector(ViewController.lockButtonClicked), for:UIControlEvents.touchUpInside)
         mapView.addSubview(lockButton)
-        
-        
         
         mapView.addSubview(openCloseButtonView)
         openCloseButtonHidden(hidden: true)
@@ -260,6 +291,26 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         }
         prepareMap()
     }
+    func fromLockButtonPressed(_ sender : UIButton){
+        
+    }
+    
+    func toLockButtonPressed ( _ sender :UIButton){
+        
+    }
+    
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool){
+       self.buttonsViewHide( hidden: true)
+    self.openCloseButtonHidden(hidden: true)
+    }
+    func buttonsViewHide( hidden : Bool ){
+        if hidden == true{
+            mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        }
+        else{
+            mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-123)
+        }
+    }
     
     func openCloseButtonImages(){
         
@@ -285,7 +336,7 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         
         if hidden{
               openCloseButtonView.isHidden = true
-        
+            
         }
         else{
               openCloseButtonView.isHidden = false
@@ -317,6 +368,8 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     }
     //MARK: Mapview delegate for update address on move
     func mapView(_ mapView: GMSMapView, idleAt cameraPosition: GMSCameraPosition) {
+        
+        self.buttonsViewHide( hidden: false)
         geocoder.reverseGeocodeCoordinate(cameraPosition.target) { (response, error) in
             guard error == nil else {
                 return
@@ -424,6 +477,8 @@ extension ViewController: CLLocationManagerDelegate {
         self.locationManager.stopUpdatingLocation()
         
     }
+    
+    
 }
 
 extension ViewController {
