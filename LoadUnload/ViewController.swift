@@ -104,12 +104,37 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func lockButtonClicked(){
+        if PCMapManager.shared.selected == .to {
+            if toTextField.text?.characters.count == 0 { return }
+            PCMapManager.shared.to.locked = true
+            PCMapManager.shared.to.address = toTextField.text
+            PCMapManager.shared.to.coordinate = mapCenter()
+        }else{
+            if fromTextField.text?.characters.count == 0 { return }
+            PCMapManager.shared.from.locked = true
+            PCMapManager.shared.from.locked = true
+            PCMapManager.shared.from.address = fromTextField.text
+            PCMapManager.shared.from.coordinate = mapCenter()
+        }
+        if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked == true{
+            lockButton.isHidden = true
+        }else{
+            lockButton.isHidden = false
+        }
+        prepareMap()
+    }
+    
     func prepareMap(){
         fromTextField.backgroundColor = UIColor.white
         toTextField.backgroundColor = UIColor.white
         // Check locked state
         if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked == true {
             // Both are locked
+            if let from = PCMapManager.shared.from.coordinate, let to = PCMapManager.shared.to.coordinate {
+                getRoutePoints(from: from, to: to)
+            }
+            
             fromTextField.backgroundColor = UIColor.gray
             toTextField.backgroundColor = UIColor.gray
         }else if PCMapManager.shared.from.locked == true {   
@@ -245,21 +270,7 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         }
     
     }
-    func lockButtonClicked(){
-        if PCMapManager.shared.selected == .to {
-            if toTextField.text?.characters.count == 0 { return }
-            PCMapManager.shared.to.locked = true
-        }else{
-            if fromTextField.text?.characters.count == 0 { return }
-            PCMapManager.shared.from.locked = true
-        }
-        if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked {
-            lockButton.isHidden = true
-        }else{
-            lockButton.isHidden = false
-        }
-        prepareMap()
-    }
+
     
     func openCloseButtonImages(){
         
@@ -317,6 +328,10 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     }
     //MARK: Mapview delegate for update address on move
     func mapView(_ mapView: GMSMapView, idleAt cameraPosition: GMSCameraPosition) {
+        if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked == true{
+            return
+        }
+
         geocoder.reverseGeocodeCoordinate(cameraPosition.target) { (response, error) in
             guard error == nil else {
                 return
@@ -338,8 +353,6 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
             
         }
     }
-
-    
 }
 
 extension ViewController: GMSAutocompleteViewControllerDelegate {
@@ -366,7 +379,7 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
             mapView.animate(toLocation: place.coordinate)
             mapView.animate(toZoom: 14)
             toTextField.text = place.formattedAddress
-            getRoutePoints(from: marker.position, to: marker1.position)
+//            getRoutePoints(from: marker.position, to: marker1.position)
         }
     }
     
