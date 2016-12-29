@@ -309,6 +309,16 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         }
     
     }
+    @IBAction func bookLaterButtonClicked(_ sender: UIButton) {
+    }
+    @IBAction func bookNowButtonClicked(_ sender: UIButton) {
+        
+        let vc : PickWeightAndTypeViewController = self.storyboard?.instantiateViewController(withIdentifier: "PickWeightAndTypeViewController") as! PickWeightAndTypeViewController
+
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: false, completion: nil)
+        
+    }
 
     func fromLockButtonPressed(_ sender : UIButton){
         if (fromTextField.text?.characters.count == 0) { return }
@@ -355,7 +365,7 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     }
     
     func buttonsViewHide( hidden : Bool ){
-        return
+//        return
         if hidden == true{
             mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         }
