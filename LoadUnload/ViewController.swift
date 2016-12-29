@@ -12,7 +12,9 @@ import GooglePlaces
 import Alamofire
 class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     
-    var marker = GMSMarker()
+    var fromMarker = GMSMarker()
+    var toMarker = GMSMarker()
+
     var fromTextField: UITextField! = nil
     var toTextField: UITextField! = nil
     var locationManager = CLLocationManager()
@@ -104,6 +106,8 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         
         toLockButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         toLockButton?.setImage(UIImage(named : "unlock"), for: .normal)
+        toLockButton?.setImage(UIImage(named : "lock"), for: .selected)
+
         toLockButton?.addTarget(self, action: #selector(ViewController.toLockButtonPressed(_:)), for: .touchUpInside)
         toTextField.rightViewMode = UITextFieldViewMode.always
         toTextField.rightView = toLockButton
@@ -143,6 +147,7 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         if PCMapManager.shared.selected == .to {
             if toTextField.text?.characters.count == 0 { return }
             PCMapManager.shared.to.locked = true
+            toLockButton?.isSelected = true
             PCMapManager.shared.to.address = toTextField.text
             PCMapManager.shared.to.coordinate = mapCenter()
             if PCMapManager.shared.from.locked == false{
@@ -151,10 +156,10 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         }else{
             if fromTextField.text?.characters.count == 0 { return }
             PCMapManager.shared.from.locked = true
-            PCMapManager.shared.from.locked = true
+            fromLockButton?.isSelected = true
             PCMapManager.shared.from.address = fromTextField.text
             PCMapManager.shared.from.coordinate = mapCenter()
-            if PCMapManager.shared.from.locked == false{
+            if PCMapManager.shared.to.locked == false{
                 PCMapManager.shared.selected = .to
             }
         }
@@ -167,23 +172,26 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     }
     
     func prepareMap(){
-        fromLockButton?.setImage(UIImage(named : "unlock"), for: .normal)
-        toLockButton?.setImage(UIImage(named : "unlock"), for: .normal)
+        
+        mapView.clear()
+
         // Check locked state
         if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked == true {
             // Both are locked
+            lockButton.isHidden = true
             if let from = PCMapManager.shared.from.coordinate, let to = PCMapManager.shared.to.coordinate {
                 getRoutePoints(from: from, to: to)
             }
-            fromLockButton?.setImage(UIImage(named : "lock"), for: .normal)
-            toLockButton?.setImage(UIImage(named : "lock"), for: .normal)
         }else if PCMapManager.shared.from.locked == true {
-            fromLockButton?.setImage(UIImage(named : "lock"), for: .normal)
+            lockButton.isHidden = false
         }else if PCMapManager.shared.to.locked == true{
-            toLockButton?.setImage(UIImage(named : "lock"), for: .normal)
+            lockButton.isHidden = false
         }else{
-            
+            lockButton.isHidden = false
         }
+        showFromMarker()
+        showToMarker()
+
         
         // Check selected state
         if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked == true {
@@ -223,7 +231,6 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
             sender.isSelected = false
             openCloseButtonHidden(hidden: true)
         }
-        
     }
     
     @IBAction func oneTonButtonClicked(_ sender: UIButton) {
@@ -269,15 +276,9 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     }
     
     @IBAction func loadingButtonClicked(_ sender: UIButton) {
-       
-
-        if sender.isSelected == false{
-            sender.isSelected = true
-        }else{
-            sender.isSelected = false
-        }
-        
+       sender.isSelected = !sender.isSelected
     }
+    
     @IBAction func openButtonClicked(_ sender: UIButton) {
          openCloseButtonHidden(hidden: true)
         if belowOneTonButton.isSelected {
@@ -285,15 +286,13 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         }
         else if oneTonButton.isSelected {
             
-        }
-        else if aboveOneTonButton.isSelected {
+        } else if aboveOneTonButton.isSelected {
+            
+        } else{
             
         }
-        else{
-            
-        }
-        
     }
+    
     @IBAction func closeButtonClicked(_ sender: UIButton) {
          openCloseButtonHidden(hidden: true)
         if belowOneTonButton.isSelected {
@@ -312,19 +311,49 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     }
 
     func fromLockButtonPressed(_ sender : UIButton){
+        if (fromTextField.text?.characters.count == 0) { return }
         sender.isSelected = !sender.isSelected
         
+        // Save location to PCManager
+        if sender.isSelected {
+            PCMapManager.shared.from.address = fromTextField.text
+            PCMapManager.shared.from.coordinate = mapCenter()
+            PCMapManager.shared.from.locked = true
+        }else{
+            PCMapManager.shared.from.locked = false
+        }
+        
+        if PCMapManager.shared.to.locked == false && sender.isSelected {
+            PCMapManager.shared.selected = .to
+        }
+        
+        prepareMap()
     }
     
     func toLockButtonPressed ( _ sender :UIButton){
+        if (toTextField.text?.characters.count == 0) { return }
         sender.isSelected = !sender.isSelected
-
+        
+        // Save location to PCManager
+        if sender.isSelected == true {
+            PCMapManager.shared.to.address = toTextField.text
+            PCMapManager.shared.to.coordinate = mapCenter()
+            PCMapManager.shared.to.locked = true
+        }else{
+            PCMapManager.shared.to.locked = false
+        }
+        
+        if PCMapManager.shared.from.locked == false && sender.isSelected {
+            PCMapManager.shared.selected = .from
+        }
+        prepareMap()
     }
     
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool){
         self.buttonsViewHide( hidden: true)
         self.openCloseButtonHidden(hidden: true)
     }
+    
     func buttonsViewHide( hidden : Bool ){
         return
         if hidden == true{
@@ -417,6 +446,28 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
             
         }
     }
+    
+    func showFromMarker() {
+        if let position = PCMapManager.shared.from.coordinate, PCMapManager.shared.from.locked == true  {
+            fromMarker.position = position
+            fromMarker.appearAnimation = kGMSMarkerAnimationPop
+            fromMarker.map = mapView
+            fromMarker.icon = UIImage(named: "source")
+            mapView.animate(toLocation: position)
+            mapView.animate(toZoom: 14)
+        }
+    }
+    
+    func showToMarker() {
+        if let position = PCMapManager.shared.to.coordinate ,PCMapManager.shared.to.locked == true  {
+            toMarker.position = position
+            toMarker.appearAnimation = kGMSMarkerAnimationPop
+            toMarker.map = mapView
+            toMarker.icon = UIImage(named: "destination")
+            mapView.animate(toLocation: position)
+            mapView.animate(toZoom: 14)
+        }
+    }
 }
 
 extension ViewController: GMSAutocompleteViewControllerDelegate {
@@ -426,25 +477,20 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
         dismiss(animated: true, completion: nil)
         
         if PCMapManager.shared.selected == .from {
-            marker.position = place.coordinate
-            marker.appearAnimation = kGMSMarkerAnimationPop
-            marker.map = mapView
-            marker.icon = UIImage(named: "source")
-            mapView.animate(toLocation: place.coordinate)
-            mapView.animate(toZoom: 14)
+            PCMapManager.shared.from.coordinate = place.coordinate
+            PCMapManager.shared.from.address = place.formattedAddress
+            PCMapManager.shared.from.locked = true
+            fromLockButton?.isSelected = true
             fromTextField.text = place.formattedAddress
         }
         else {
-            let marker1 = GMSMarker()
-            marker1.position = place.coordinate
-            marker1.appearAnimation = kGMSMarkerAnimationPop
-            marker1.map = mapView
-            marker1.icon = UIImage(named: "destination")
-            mapView.animate(toLocation: place.coordinate)
-            mapView.animate(toZoom: 14)
+            PCMapManager.shared.to.coordinate = place.coordinate
+            PCMapManager.shared.to.address = place.formattedAddress
+            PCMapManager.shared.to.locked = true
+            toLockButton?.isSelected = true
             toTextField.text = place.formattedAddress
-//            getRoutePoints(from: marker.position, to: marker1.position)
         }
+        prepareMap()
     }
     
     func getRoutePoints(from : CLLocationCoordinate2D , to : CLLocationCoordinate2D) {
