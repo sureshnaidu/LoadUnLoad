@@ -13,6 +13,7 @@ class PickWeightAndTypeViewController: UIViewController , UITableViewDelegate , 
     @IBOutlet var wightView: UIView!
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var weightTextField: UITextField!
+    @IBOutlet var mobileNumberView: UIView!
     
     var titlesArray = [String]()
     override func viewDidLoad() {
@@ -23,6 +24,8 @@ class PickWeightAndTypeViewController: UIViewController , UITableViewDelegate , 
         // Do any additional setup after loading the view.
         
         titlesArray = ["HouseShifting", "Home Appliances/Electronics", "Poultry/Agro","Industrial","Medical","Liquid","Fragile","Construction","Others"]
+        
+        mobileNumberView.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +60,7 @@ class PickWeightAndTypeViewController: UIViewController , UITableViewDelegate , 
         
         weightTextField.resignFirstResponder()
         wightView.isHidden = true
+        mobileNumberView.isHidden = false
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
