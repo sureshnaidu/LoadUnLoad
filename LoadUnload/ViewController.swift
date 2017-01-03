@@ -37,10 +37,13 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     @IBOutlet var bookNowButton: UIButton!
 
     @IBOutlet var buttonsView: UIStackView!
+    @IBOutlet var confirmBookingView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        confirmBookingView.isHidden = true
         self.mapView?.isMyLocationEnabled = true
         //Location Manager code to fetch current location
         self.locationManager.delegate = self
@@ -315,9 +318,12 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     @IBAction func bookNowButtonClicked(_ sender: UIButton) {
         
         let vc : PickWeightAndTypeViewController = self.storyboard?.instantiateViewController(withIdentifier: "PickWeightAndTypeViewController") as! PickWeightAndTypeViewController
-
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: false, completion: nil)
+        
+        confirmBookingView.isHidden = false
+        buttonsView.isHidden = true
+        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-80)
         
     }
 
@@ -366,13 +372,18 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     }
     
     func buttonsViewHide( hidden : Bool ){
-//        return
+
         if hidden == true{
             mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         }
         else{
             mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-123)
         }
+        
+        if confirmBookingView.isHidden == false {
+              mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-80)
+        }
+        
     }
     
     func openCloseButtonImages(){

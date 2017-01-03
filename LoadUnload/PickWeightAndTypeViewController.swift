@@ -14,6 +14,7 @@ class PickWeightAndTypeViewController: UIViewController , UITableViewDelegate , 
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var weightTextField: UITextField!
     @IBOutlet var mobileNumberView: UIView!
+    @IBOutlet var useMyMobNum: UIButton!
     
     var titlesArray = [String]()
     override func viewDidLoad() {
@@ -26,6 +27,8 @@ class PickWeightAndTypeViewController: UIViewController , UITableViewDelegate , 
         titlesArray = ["HouseShifting", "Home Appliances/Electronics", "Poultry/Agro","Industrial","Medical","Liquid","Fragile","Construction","Others"]
         
         mobileNumberView.isHidden = true
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +64,10 @@ class PickWeightAndTypeViewController: UIViewController , UITableViewDelegate , 
         weightTextField.resignFirstResponder()
         wightView.isHidden = true
         mobileNumberView.isHidden = false
+    }
+    @IBAction func oKMobileButtonClicked(_ sender: Any) {
+        mobileNumberView.isHidden = true
+        self.dismiss(animated: false, completion: nil)
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
