@@ -24,6 +24,9 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     var toLockButton: UIButton?
     var pickupImageView: UIImageView?
     
+    var locationLockButtonView: UIView?
+    var locationCenterImageView: UIImageView?
+    
     
     @IBOutlet var openButton: UIButton!
     @IBOutlet var closeButton: UIButton!
@@ -39,6 +42,8 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
 
     @IBOutlet var buttonsView: UIStackView!
     @IBOutlet var confirmBookingView: UIView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,11 +123,20 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         toTextField.rightView = toLockButton
         
         
-        lockButton = UIButton(frame: CGRect(x: mapView.frame.size.width/2-30, y: mapView.frame.size.height/2-50, width: 60, height: 30))
+        locationLockButtonView = UIView(frame: CGRect(x: mapView.frame.size.width/2-50, y: mapView.frame.size.height/2-80, width: 100, height: 60))
+        locationLockButtonView?.backgroundColor = UIColor.clear
+        mapView.addSubview(locationLockButtonView!)
+        
+        lockButton = UIButton(frame: CGRect(x: 20, y: 0, width: 60, height: 30))
         lockButton.backgroundColor = UIColorFromRGB(rgbValue: 0x181300)
         lockButton.setTitle("Lock", for: .normal)
         lockButton.addTarget(self, action: #selector(ViewController.lockButtonClicked), for:UIControlEvents.touchUpInside)
-        mapView.addSubview(lockButton)
+        locationLockButtonView?.addSubview(lockButton)
+        
+        locationCenterImageView = UIImageView(frame: CGRect(x: 35, y: 30, width: 30, height: 30))
+        locationCenterImageView?.image = UIImage(named: "source")
+        locationLockButtonView?.addSubview(locationCenterImageView!)
+        
         
         mapView.addSubview(openCloseButtonView)
         openCloseButtonHidden(hidden: true)
@@ -177,9 +191,9 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
             }
         }
         if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked == true{
-            lockButton.isHidden = true
+            locationLockButtonView?.isHidden = true
         }else{
-            lockButton.isHidden = false
+            locationLockButtonView?.isHidden = false
         }
         prepareMap()
     }
@@ -191,16 +205,16 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         // Check locked state
         if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked == true {
             // Both are locked
-            lockButton.isHidden = true
+            locationLockButtonView?.isHidden = true
             if let from = PCMapManager.shared.from.coordinate, let to = PCMapManager.shared.to.coordinate {
                 getRoutePoints(from: from, to: to)
             }
         }else if PCMapManager.shared.from.locked == true {
-            lockButton.isHidden = false
+            locationLockButtonView?.isHidden = false
         }else if PCMapManager.shared.to.locked == true{
-            lockButton.isHidden = false
+            locationLockButtonView?.isHidden = false
         }else{
-            lockButton.isHidden = false
+            locationLockButtonView?.isHidden = false
         }
         showFromMarker()
         showToMarker()
