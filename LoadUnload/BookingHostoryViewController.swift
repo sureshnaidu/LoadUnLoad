@@ -32,15 +32,19 @@ class BookingHostoryViewController: UIViewController , UITableViewDataSource, UI
         return 10
         
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 255
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Instantiate a cell
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "bookingHistory")
-        
-        // Adding the right informations
-        //        cell.imageView?.image = UIImage(named: "source")
-        cell.textLabel?.text = "343"
-        cell.textLabel?.textColor = UIColor.gray //UIColorFromRGB(rgbValue: 0xededed)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BookingHistoryTableViewCell", for: indexPath) as! BookingHistoryTableViewCell
+
+        cell.confirmTitleLabel.text = "CONFIRMED"
+        cell.dataLabel.text = "Wed Oct 12 5:54 AM 2016"
+        cell.bookingIdLabel.text = "BK0000000444"
+        cell.fromAdderessLAbel.text = " sadfsdaf asdf asdf asdf asdf asdfas dfa sdfasdf asdfasdfa sdfas dfa sdfasd"
+        cell.toAddressLabel.text = "a sdfsdf asdf asdf asdfas dfk ajsdhfkjas kas dhfaks djfhasdk jfhasdsdf asdfasd"
         
         // Returning the cell
         return cell

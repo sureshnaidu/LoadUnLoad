@@ -22,6 +22,7 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     let geocoder = GMSGeocoder()
     var fromLockButton: UIButton?
     var toLockButton: UIButton?
+    var pickupImageView: UIImageView?
     
     
     @IBOutlet var openButton: UIButton!
@@ -125,6 +126,14 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         
         mapView.addSubview(openCloseButtonView)
         openCloseButtonHidden(hidden: true)
+        
+        
+        pickupImageView = UIImageView(frame: CGRect(x: mapView.frame.size.width/2, y: mapView.frame.size.height/2, width: 30, height: 30))
+        pickupImageView?.backgroundColor = UIColorFromRGB(rgbValue: 0x181300)
+//        pickupImageView?.image = UIImage(named:)
+        
+        
+        
         
         prepareToolbar()
 

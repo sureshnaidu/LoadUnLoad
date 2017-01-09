@@ -26,6 +26,7 @@
 		84C611731E005FD5007D4DFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C611711E005FD5007D4DFA /* LaunchScreen.storyboard */; };
 		84C6117E1E005FD5007D4DFA /* LoadUnloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C6117D1E005FD5007D4DFA /* LoadUnloadTests.swift */; };
 		84C611891E005FD5007D4DFA /* LoadUnloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C611881E005FD5007D4DFA /* LoadUnloadUITests.swift */; };
+		84F473961E23B2C4000A6E92 /* BookingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F473951E23B2C4000A6E92 /* BookingHistoryTableViewCell.swift */; };
 		D959E64B1E140934001E89FF /* hyderabad.gpx in Resources */ = {isa = PBXBuildFile; fileRef = D959E64A1E140934001E89FF /* hyderabad.gpx */; };
 		D9E814791E0BC5D200E3F64A /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E814751E0BC5D200E3F64A /* NetworkInterface.swift */; };
 		D9E8147A1E0BC5D200E3F64A /* MPMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E814761E0BC5D200E3F64A /* MPMedia.swift */; };
@@ -82,6 +83,7 @@
 		84C611841E005FD5007D4DFA /* LoadUnloadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoadUnloadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C611881E005FD5007D4DFA /* LoadUnloadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUnloadUITests.swift; sourceTree = "<group>"; };
 		84C6118A1E005FD5007D4DFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84F473951E23B2C4000A6E92 /* BookingHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		B83A2DF34F03A10185A1C31F /* Pods_LoadUnload.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadUnload.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2023D81B9E999461B8C09BB /* Pods_LoadUnloadTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadUnloadTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D959E64A1E140934001E89FF /* hyderabad.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hyderabad.gpx; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				846FE6EC1E0AF6E100AEA5BF /* BookingHostoryViewController.swift */,
+				84F473951E23B2C4000A6E92 /* BookingHistoryTableViewCell.swift */,
 				84C6116A1E005FD5007D4DFA /* ViewController.swift */,
 				840616391E0D7D1500EF6796 /* PCWebViewViewController.swift */,
 				84A4EC341E15544A00DD6516 /* PickWeightAndTypeViewController.swift */,
@@ -467,6 +470,7 @@
 				84A4EC351E15544A00DD6516 /* PickWeightAndTypeViewController.swift in Sources */,
 				D9E814791E0BC5D200E3F64A /* NetworkInterface.swift in Sources */,
 				84C611691E005FD5007D4DFA /* AppDelegate.swift in Sources */,
+				84F473961E23B2C4000A6E92 /* BookingHistoryTableViewCell.swift in Sources */,
 				D9E8147A1E0BC5D200E3F64A /* MPMedia.swift in Sources */,
 				8406163A1E0D7D1500EF6796 /* PCWebViewViewController.swift in Sources */,
 				84092C6D1E081B03001CC38C /* UserSession.swift in Sources */,
