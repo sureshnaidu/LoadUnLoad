@@ -11,6 +11,7 @@ enum LURequestType {
     case signup
     case customerInfo
     case logout
+    case bookingList
 }
 
 
@@ -26,10 +27,16 @@ class LUNetworkRequests {
     static func getRequestofType(_ requestType:LURequestType, headers:NSDictionary?,  params:NSDictionary?) -> URLRequest {
         var request:URLRequest!
         switch requestType {
+        case .bookingList:
+            let path = "/api/operation/booking/list/\(params!["mobile"]!)"
+            let endpoint = RequestConstants.LUURL + path
+            request = self.createGETRequest(endpoint, headers: headers, params: params)
+            break
         case .customerInfo:
             let path = "/api/master/customer/\(params!["mobile"]!)"
             let endpoint = RequestConstants.LUURL + path
             request = self.createGETRequest(endpoint, headers: headers, params: params)
+            break
         case .logout:
             let path = "/api/master/customer/logout"
             let endpoint = RequestConstants.LUURL + path
