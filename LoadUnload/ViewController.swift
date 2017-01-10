@@ -349,7 +349,20 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-80)
         
     }
+    @IBAction func ragteCardClicked(_ sender: UIButton) {
+        
+        let vc : RateCardViewController = self.storyboard?.instantiateViewController(withIdentifier: "RateCardViewController") as! RateCardViewController
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: false, completion: nil)
+        
+        confirmBookingView.isHidden = false
+        buttonsView.isHidden = true
+        mapView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-80)
+        
+    }
 
+    @IBAction func tripEstimateClicked(_ sender: UIButton) {
+    }
     func fromLockButtonPressed(_ sender : UIButton){
         if (fromTextField.text?.characters.count == 0) { return }
         sender.isSelected = !sender.isSelected
