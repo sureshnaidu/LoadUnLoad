@@ -201,33 +201,53 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     func prepareMap(){
         
         mapView.clear()
-
+        fromLockButton?.isSelected = false
+        toLockButton?.isSelected = false
         // Check locked state
         if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked == true {
             // Both are locked
             locationLockButtonView?.isHidden = true
+            fromLockButton?.isSelected = true
+            toLockButton?.isSelected = true
+            fromTextField.text = PCMapManager.shared.from.address
+            toTextField.text = PCMapManager.shared.to.address
+
+            
             if let from = PCMapManager.shared.from.coordinate, let to = PCMapManager.shared.to.coordinate {
                 getRoutePoints(from: from, to: to)
             }
         }else if PCMapManager.shared.from.locked == true {
             locationLockButtonView?.isHidden = false
+            fromLockButton?.isSelected = true
+            fromTextField.text = PCMapManager.shared.from.address
+
         }else if PCMapManager.shared.to.locked == true{
             locationLockButtonView?.isHidden = false
+            toLockButton?.isSelected = true
+            toTextField.text = PCMapManager.shared.to.address
+
         }else{
             locationLockButtonView?.isHidden = false
         }
-        showFromMarker()
-        showToMarker()
 
-        
         // Check selected state
         if PCMapManager.shared.from.locked == true && PCMapManager.shared.to.locked == true {
-            // No need to select any marker
+
         }else if PCMapManager.shared.selected == .to {
-            // Selected to marker
-        }else{
+            
+            locationCenterImageView?.image = UIImage(named : "destination")
+            
+        }else if PCMapManager.shared.selected == .from{
+            
+            locationCenterImageView?.image = UIImage(named : "source")
+
+        }
+        else{
             // Selct from marker
         }
+        
+        showFromMarker()
+        showToMarker()
     }
     
     
