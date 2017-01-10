@@ -69,7 +69,7 @@ class LeftSideMenuViewController: UIViewController, UITableViewDelegate , UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        let rootView : UIViewController
+        var rootView : UIViewController
         
         if indexPath.row == 0  {
             rootView =  UIStoryboard.viewController(identifier: "ViewController") as! ViewController
@@ -96,6 +96,11 @@ class LeftSideMenuViewController: UIViewController, UITableViewDelegate , UITabl
             UserSession.logout()
             rootView =  UIStoryboard.viewController(identifier: "ViewController") as! ViewController
         }
+            
+        else if indexPath.row == 3{
+        rootView =  UIStoryboard.viewController(identifier: "CorporateProfileViewController") as! CorporateProfileViewController
+        }
+        
         else{
             rootView =  UIStoryboard.viewController(identifier: "BookingHostoryViewController") as! BookingHostoryViewController
         }

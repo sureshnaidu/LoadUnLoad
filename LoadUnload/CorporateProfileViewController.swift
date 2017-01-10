@@ -1,22 +1,24 @@
 //
-//  RateCardViewController.swift
+//  CorporateProfileViewController.swift
 //  LoadUnload
 //
-//  Created by Admin on 09/01/17.
+//  Created by Admin on 10/01/17.
 //  Copyright © 2017 FreeLancer. All rights reserved.
 //
 
 import UIKit
 
-class RateCardViewController: UIViewController {
+class CorporateProfileViewController: UIViewController {
 
+    @IBOutlet var mobileNumberTF: UITextField!
+    @IBOutlet var nameTF: UITextField!
+    @IBOutlet var emailIdTF: UITextField!
+    @IBOutlet var passwordTF: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.clear
-        view.isOpaque = true
-        
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,9 +26,6 @@ class RateCardViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancelButtonClicked(_ sender: Any) {
-        self.dismiss(animated: false , completion: nil)
-    }
-
+   
 
 }

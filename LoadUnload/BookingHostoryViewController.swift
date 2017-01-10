@@ -122,6 +122,14 @@ class BookingHostoryViewController: UIViewController , UITableViewDataSource, UI
         let obj = history[indexPath.row]
         
         cell.confirmTitleLabel.text = (obj.isConfirm == true) ? "CONFIRMED" : ((obj.isCancel == true) ? "CANCELLED" : "")
+        
+        if cell.confirmTitleLabel.text == "CONFIRMED" {
+            cell.confirmTitleLabel.textColor = UIColorFromRGB(rgbValue: UInt(Constants.YELLOW_THEME_COLOR))
+        }
+        else{
+            cell.confirmTitleLabel.textColor = UIColor.red
+        }
+        
         cell.dataLabel.text = obj.bookingDate?.ludate ?? ""
         cell.bookingIdLabel.text = obj.bookingNo ?? ""
         cell.fromAdderessLAbel.text = obj.locationFrom ?? ""

@@ -28,6 +28,8 @@
 		84C611891E005FD5007D4DFA /* LoadUnloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C611881E005FD5007D4DFA /* LoadUnloadUITests.swift */; };
 		84F473961E23B2C4000A6E92 /* BookingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F473951E23B2C4000A6E92 /* BookingHistoryTableViewCell.swift */; };
 		84F473981E23D64D000A6E92 /* RateCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F473971E23D64D000A6E92 /* RateCardViewController.swift */; };
+		84F4739A1E254342000A6E92 /* CorporateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F473991E254342000A6E92 /* CorporateProfileViewController.swift */; };
+		84F4739C1E2547E8000A6E92 /* CorporateProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4739B1E2547E8000A6E92 /* CorporateProfileTableViewCell.swift */; };
 		D959E64B1E140934001E89FF /* hyderabad.gpx in Resources */ = {isa = PBXBuildFile; fileRef = D959E64A1E140934001E89FF /* hyderabad.gpx */; };
 		D9ACECD81E2528BD00A240A0 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ACECD71E2528BD00A240A0 /* DateExtension.swift */; };
 		D9E814791E0BC5D200E3F64A /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E814751E0BC5D200E3F64A /* NetworkInterface.swift */; };
@@ -87,6 +89,8 @@
 		84C6118A1E005FD5007D4DFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84F473951E23B2C4000A6E92 /* BookingHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		84F473971E23D64D000A6E92 /* RateCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateCardViewController.swift; sourceTree = "<group>"; };
+		84F473991E254342000A6E92 /* CorporateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CorporateProfileViewController.swift; sourceTree = "<group>"; };
+		84F4739B1E2547E8000A6E92 /* CorporateProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CorporateProfileTableViewCell.swift; sourceTree = "<group>"; };
 		B83A2DF34F03A10185A1C31F /* Pods_LoadUnload.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadUnload.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2023D81B9E999461B8C09BB /* Pods_LoadUnloadTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadUnloadTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D959E64A1E140934001E89FF /* hyderabad.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hyderabad.gpx; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 				846FE6EC1E0AF6E100AEA5BF /* BookingHostoryViewController.swift */,
 				84F473951E23B2C4000A6E92 /* BookingHistoryTableViewCell.swift */,
 				84C6116A1E005FD5007D4DFA /* ViewController.swift */,
+				84F473991E254342000A6E92 /* CorporateProfileViewController.swift */,
+				84F4739B1E2547E8000A6E92 /* CorporateProfileTableViewCell.swift */,
 				84F473971E23D64D000A6E92 /* RateCardViewController.swift */,
 				840616391E0D7D1500EF6796 /* PCWebViewViewController.swift */,
 				84A4EC341E15544A00DD6516 /* PickWeightAndTypeViewController.swift */,
@@ -491,7 +497,9 @@
 				D9E814811E0D77D700E3F64A /* ViewControllerExtension.swift in Sources */,
 				D9E814831E0D787100E3F64A /* HUD.swift in Sources */,
 				842A11C11E01A324000657AF /* RegisterViewController.swift in Sources */,
+				84F4739C1E2547E8000A6E92 /* CorporateProfileTableViewCell.swift in Sources */,
 				840027981E0ABB7B0063A195 /* AppToolbarController.swift in Sources */,
+				84F4739A1E254342000A6E92 /* CorporateProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
