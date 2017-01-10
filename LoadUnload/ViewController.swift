@@ -48,13 +48,11 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         confirmBookingView.isHidden = true
         self.mapView?.isMyLocationEnabled = true
         //Location Manager code to fetch current location
         self.locationManager.delegate = self
         self.locationManager.startUpdatingLocation()
-        
         
         UIApplication.shared.statusBarStyle = .lightContent
         // Do any additional setup after loading the view, typically from a nib.
@@ -101,7 +99,6 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         fromTextField.rightViewMode = UITextFieldViewMode.always
         fromTextField.rightView = fromLockButton
         
-        
         //To TextField
         toTextField = UITextField(frame: CGRect(x: 20, y: fromTextField.frame.size.height+fromTextField.frame.origin.y+4 , width: view.frame.size.width-40, height: 30));
         toTextField.backgroundColor = UIColor.white
@@ -121,7 +118,6 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         toLockButton?.addTarget(self, action: #selector(ViewController.toLockButtonPressed(_:)), for: .touchUpInside)
         toTextField.rightViewMode = UITextFieldViewMode.always
         toTextField.rightView = toLockButton
-        
         
         locationLockButtonView = UIView(frame: CGRect(x: mapView.frame.size.width/2-50, y: mapView.frame.size.height/2-80, width: 100, height: 60))
         locationLockButtonView?.backgroundColor = UIColor.clear
@@ -145,9 +141,6 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
         pickupImageView = UIImageView(frame: CGRect(x: mapView.frame.size.width/2, y: mapView.frame.size.height/2, width: 30, height: 30))
         pickupImageView?.backgroundColor = UIColorFromRGB(rgbValue: 0x181300)
 //        pickupImageView?.image = UIImage(named:)
-        
-        
-        
         
         prepareToolbar()
 
@@ -433,8 +426,8 @@ class ViewController: UIViewController,UITextFieldDelegate,GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool){
-        self.buttonsViewHide( hidden: true)
-        self.openCloseButtonHidden(hidden: true)
+//        self.buttonsViewHide( hidden: true)
+//        self.openCloseButtonHidden(hidden: true)
     }
     
     func buttonsViewHide( hidden : Bool ){
